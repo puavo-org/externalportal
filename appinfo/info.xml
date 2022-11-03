@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <!--
+    SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+    SPDX-License-Identifier: CC0-1.0
+    -->
+    <id>externalportal</id>
+    <name>External Portal</name>
+    <summary>Dashboard Portal Widget</summary>
+    <description><![CDATA[A dashboard widget that displays the content from External Sites app on Dashboard in a pretty and inviting form.]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="dev@opinsys.fi" homepage="https://puavo.org">Tuomas Nurmi</author>
+    <namespace>ExternalPortal</namespace>
+    <category>dashboard</category>
+    <bugs>https://github.com/puavo-org/externalportal/issues</bugs>
+    <dependencies>
+        <nextcloud min-version="24" max-version="24"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>External Portal</name>
+            <route>externalportal.page.index</route>
+        </navigation>
+    </navigations>
+</info>
