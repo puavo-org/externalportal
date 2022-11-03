@@ -5,12 +5,17 @@ declare(strict_types=1);
 
 namespace OCA\ExternalPortal\AppInfo;
 
+use OCA\External\Dashboard\ExternalPortalWidget;
 use OCP\AppFramework\App;
 
 class Application extends App {
-	public const APP_ID = 'externalportal';
-
-	public function __construct() {
-		parent::__construct(self::APP_ID);
-	}
+  public const APP_ID = 'externalportal';
+  
+  public function __construct() {
+    parent::__construct(self::APP_ID);
+  }
+  
+  public function register(IRegistrationContext $context): void {
+    $context->registerDashboardWidget(ExternalPortalWidget::class);
+  }
 }
