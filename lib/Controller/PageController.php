@@ -22,6 +22,7 @@ class PageController extends Controller {
 	 */
 	public function index(): TemplateResponse {
 		Util::addScript(Application::APP_ID, 'externalportal-main');
+		Util::addScript(Application::APP_ID, 'externalportal-dashboard');
 
 		return new TemplateResponse(Application::APP_ID, 'main');
 	}

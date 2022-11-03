@@ -80,6 +80,6 @@ class ExternalPortalWidget implements IWidget {
    * Execute widget bootstrap code like loading scripts and providing initial state
    */
   public function load(): void {
-    \OCP\Util::addScript('externalportal', 'dashboard');
+    \OCP\Util::addScript('externalportal', 'externalportal-dashboard');
   }
 }

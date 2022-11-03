@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     emptyContentMessage() {
-      return t('external', 'No external')
+      return t('externalportal', 'No external')
     },
     emptyContentIcon() {
       return 'icon-close'
