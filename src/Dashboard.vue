@@ -20,7 +20,7 @@ guiding source for basic dashboard widget functionality.
 -->
 
 <template>
-<div id="external-widget">
+<div id="external-portal-widget">
 <span v-if="loading" class="icon icon-loading">ok loading</span>
 <span v-else-if="content" v-html="content">
 <span/>
@@ -68,7 +68,7 @@ export default {
     this.getContent()
   },
   mounted() {
-    document.getElementById("external-widget").parentNode.parentNode.style.width="400px" 
+    document.getElementById("external-portal-widget").parentNode.parentNode.style.width="400px" 
   },
   methods: {
     getContent() {
@@ -77,7 +77,7 @@ export default {
         url=url.slice(0, -1);
       axios.get(url).then((response) => {
         let r=""
-        response.data.ocs.data.forEach(function(p) {r+=("<div style='width: 45%; display: inline-block;'><a href="+p.url+"><image width=100% height=100% preserveAspectRatio=\"xMinYMin meet\" src="+p.icon+" /><br><p style='text-align: center;'>"+p.name+"</p></a></div>")});
+        response.data.ocs.data.forEach(function(p) {r+=("<div><a href="+p.url+"><image width=100% height=100% preserveAspectRatio=\"xMinYMin meet\" src="+p.icon+" /><br><p style='text-align: center;'>"+p.name+"</p></a></div>")});
         this.content = r;
         console.debug('"' + JSON.stringify(response.data) + '"')
       }).catch((error) => {
@@ -89,3 +89,16 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+#external-portal-widget {
+overflow: scroll;
+height: 100%;
+padding: 0 10px 0 10px;
+}
+#external-portal-widget div {
+  width: 45%;
+  display: inline-block;
+}
+
+</style>
