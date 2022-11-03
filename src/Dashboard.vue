@@ -34,7 +34,11 @@ empty
 </template>
 
 <script>
+
+import axios from '@nextcloud/axios'
 import { DashboardWidget, DashboardWidgetItem } from '@nextcloud/vue-dashboard'
+import { generateOcsUrl } from '@nextcloud/router';
+
 export default {
   name: 'Dashboard',
   components: {
@@ -60,7 +64,26 @@ export default {
       return 'icon-close'
     },
   },
+  beforeMount() {
+    this.getContent()
+  },
   mounted() {
+    document.getElementById("external-widget").parentNode.parentNode.style.width="400px" 
+  },
+  methods: {
+    getContent() {
+      const url = generateOcsUrl('apps/external/api/v1', 2).slice(0, -1)
+      axios.get(url).then((response) => {
+        let r=""
+        response.data.ocs.data.forEach(function(p) {r+=("<div style='width: 45%; display: inline-block;'><a href="+p.url+"><image width=100% height=100% preserveAspectRatio=\"xMinYMin meet\" src="+p.icon+" /><br><p style='text-align: center;'>"+p.name+"</p></a></div>")});
+        this.content = r;
+        console.debug('"' + JSON.stringify(response.data) + '"')
+      }).catch((error) => {
+        console.debug(error)
+      }).then(() => {
+        this.loading = false
+      })
+    },
   },
 }
 </script>
