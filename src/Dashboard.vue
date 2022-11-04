@@ -21,15 +21,19 @@ guiding source for basic dashboard widget functionality.
 
 <template>
 <div id="external-portal-widget">
-<span v-if="loading" class="icon icon-loading">ok loading</span>
-<span v-else-if="content" v-html="content">
-<span/>
-<NcEmptyContent v-else
-:icon="emptyContentIcon">
-<template #desc>
-empty
-</template>
-</NcEmptyContent>
+  <span v-if="loading" class="icon icon-loading">ok loading</span>
+  <span v-else-if="content">
+  <div v-for="item in content">
+    <a :href="item.url">
+    <img width=100% height=100% preserveAspectRatio="xMinYMin meet" :src="item.icon" />
+    {{ item.name }}
+    </a>
+  </div>
+  <span/>
+  <NcEmptyContent v-else
+    :icon="emptyContentIcon">
+    empty
+  </NcEmptyContent>
 </div>
 </template>
 
@@ -76,9 +80,7 @@ export default {
       if(url.endsWith("/")) //behaviour seems to have changed between 24 and 25
         url=url.slice(0, -1);
       axios.get(url).then((response) => {
-        let r=""
-        response.data.ocs.data.forEach(function(p) {r+=("<div><a href="+p.url+"><image width=100% height=100% preserveAspectRatio=\"xMinYMin meet\" src="+p.icon+" /><br><p style='text-align: center;'>"+p.name+"</p></a></div>")});
-        this.content = r;
+        this.content = response.data.ocs.data;
         console.debug('"' + JSON.stringify(response.data) + '"')
       }).catch((error) => {
         console.debug(error)
@@ -95,10 +97,6 @@ export default {
 overflow: scroll;
 height: 100%;
 padding: 0 10px 0 10px;
-}
-#external-portal-widget div {
-  width: 45%;
-  display: inline-block;
 }
 
 </style>
