@@ -20,6 +20,10 @@ declare(strict_types=1);
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * 
+SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+SPDX-License-Identifier: AGPL-3.0-or-later
  *
  */
 

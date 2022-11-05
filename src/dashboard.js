@@ -1,3 +1,6 @@
+//SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+//SPDX-License-Identifier: AGPL-3.0-or-later
+
 import { translate as t, translatePlural as n } from '@nextcloud/l10n'
 import Vue from 'vue'
 import Vuex from 'vuex'

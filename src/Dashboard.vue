@@ -17,6 +17,9 @@ License along with this library. If not, see <http://www.gnu.org/licenses/>.
 
 The Welcome widget ( https://github.com/julien-nc/welcome ) has been a very useful
 guiding source for basic dashboard widget functionality.
+
+SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
