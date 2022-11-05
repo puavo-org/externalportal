@@ -21,21 +21,18 @@ guiding source for basic dashboard widget functionality.
 
 <template>
 <div id="external-portal-widget">
-  <span v-if="loading" class="icon icon-loading">ok loading</span>
-  <span v-else-if="content">
-  <div :class="{ smaller: content.length>4 }" v-for="item in content">
-    <a :href="item.url">
-    <img class="linkitem" width=100% height=100% preserveAspectRatio="xMinYMin meet" :src="item.icon" />
-    <span>
-      {{ item.name }}
-    </span>
-    </a>
-  </div>
-  <span/>
-  <NcEmptyContent v-else
-    :icon="emptyContentIcon">
-    empty
-  </NcEmptyContent>
+  <div v-if="loading" class="icon icon-loading"></div>
+  <span v-else-if="number > 0">
+    <div :class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6}" v-for="item in content">
+      <a :href="item.url">
+        <img class="linkitem" width=100% height=100% preserveAspectRatio="xMinYMin meet" :src="item.icon" />
+        <span>
+          {{ item.name }}
+        </span>
+      </a>
+    </div>
+  </span>
+  <div v-else><span>No external sites.<br>Home sweet home.</span></div>
 </div>
 </template>
 
@@ -48,6 +45,7 @@ import { generateOcsUrl } from '@nextcloud/router';
 export default {
   name: 'Dashboard',
   components: {
+    Comment,
     DashboardWidget
   },
   props: {
@@ -64,12 +62,6 @@ export default {
     }
   },
   computed: {
-    emptyContentMessage() {
-      return t('externalportal', 'No external')
-    },
-    emptyContentIcon() {
-      return 'icon-close'
-    },
   },
   beforeMount() {
     this.getContent()
@@ -85,11 +77,12 @@ export default {
         this.content = response.data.ocs.data;
         this.number = this.content.length;
         console.debug('"' + JSON.stringify(response.data) + '"')
+        console.debug('"' + this.number + '"')
       }).catch((error) => {
         console.debug(error)
       }).then(() => {
         this.loading = false
-        if(this.number>4)
+        if(this.number>6)
           document.getElementById("external-portal-widget").parentNode.parentNode.style.width="400px" 
       })
     },
@@ -99,13 +92,15 @@ export default {
 
 <style scoped lang="scss">
 #external-portal-widget {
-overflow: scroll;
+overflow-y: scroll;
 height: 100%;
 text-align: center;
 
   div {
-    width: 45%;
+    width: 48%;
     display: inline-block;
+    padding-inline: 0.1rem;
+    
     img {
       padding: 0.5rem;
       }
@@ -113,7 +108,13 @@ text-align: center;
       text-shadow: 1px 1px 4px #404040ed;
       }
     }
+  div.icon-loading {
+    margin: 1rem;
+  }
   div.smaller {
+    width: 39%;
+  }
+  div.smallest {
     width: 30%;
   }
   .linkitem:hover {
