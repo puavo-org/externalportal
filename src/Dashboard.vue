@@ -49,13 +49,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <script>
 
 import axios from '@nextcloud/axios'
-import { DashboardWidget } from '@nextcloud/vue-dashboard'
 import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	name: 'Dashboard',
 	components: {
-		DashboardWidget,
 	},
 	props: {
 		title: {
