@@ -2,11 +2,9 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import Vue from 'vue'
-import Vuex from 'vuex'
 
-import Dashboard from './Dashboard.vue'
+import Dashboard from './Dashboard'
 
-Vue.use(Vuex)
 
 Vue.prototype.$OC = OC
 Vue.prototype.$OCA = OCA

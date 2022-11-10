@@ -20,4 +20,8 @@
     </dependencies>
     <navigations>
     </navigations>
+    <settings>
+    <admin>OCA\ExternalPortal\Settings\Admin</admin>
+    <admin-section>OCA\ExternalPortal\Settings\Section</admin-section>
+    </settings>
 </info>

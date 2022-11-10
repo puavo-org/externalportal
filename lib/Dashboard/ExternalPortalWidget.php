@@ -32,6 +32,7 @@ namespace OCA\ExternalPortal\Dashboard;
 
 use OCA\ExternalPortal\AppInfo\Application;
 use OCP\Dashboard\IWidget;
+use OCP\IConfig;
 use OCP\IL10N;
 
 //boilerplate structure from https://docs.nextcloud.com/server/latest/developer_manual/digging_deeper/dashboard.html
@@ -39,9 +40,11 @@ class ExternalPortalWidget implements IWidget {
   private IL10N $l10n;
   
   public function __construct(
-    IL10N $l10n
+    IL10N $l10n,
+    IConfig $config
   ) {
     $this->l10n = $l10n;
+    $this->config = $config;
   }
   
   /**
@@ -55,7 +58,8 @@ class ExternalPortalWidget implements IWidget {
    * @return string User facing title of the widget
    */
   public function getTitle(): string {
-    return $this->l10n->t('External sites'); //take advantage of the existing localized name
+    $widgetTitle = $this->config->getAppValue(Application::APP_ID, 'widgetTitle', 'External portal');
+    return $widgetTitle ?: 'External portal';
   }
   
   /**
