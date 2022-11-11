@@ -28,13 +28,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 			<div v-for="item in content"
 				:key="item.id"
 				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6}">
-				<a :href="item.url">
+				<a :href="item.url" target="_blank">
 					<img class="linkitem"
 						width="100%"
 						height="100%"
 						preserveAspectRatio="xMinYMin meet"
 						:src="item.icon">
-					<span>
+					<span class="linkname">
 						{{ item.name }}
 					</span>
 				</a>
@@ -127,9 +127,12 @@ div {
 
 	img {
 		padding: 0.5rem;
+    -webkit-filter: drop-shadow(5px 5px 5px #888);
+    filter: drop-shadow(5px 5px 5px #888);
 	}
-	span {
-		text-shadow: 1px 1px 4px #404040ed;
+	.linkname {
+	position: relative;
+	top: -0.75rem;
 	}
 }
 div.icon-loading {
