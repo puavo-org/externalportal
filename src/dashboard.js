@@ -1,10 +1,9 @@
-// SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+// SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import Vue from 'vue'
 
-import Dashboard from './Dashboard'
-
+import Dashboard from './Dashboard.vue'
 
 Vue.prototype.$OC = OC
 Vue.prototype.$OCA = OCA

@@ -1,4 +1,3 @@
-
 <!--
 Nextcloud - External Portal Dashboard
 @author Tuomas Nurmi
@@ -15,9 +14,9 @@ You should have received a copy of the GNU Affero General Public
 License along with this library. If not, see <http://www.gnu.org/licenses/>.
 
 The Welcome widget ( https://github.com/julien-nc/welcome ) has been a very useful
-guiding source for basic dashboard widget functionality.
+guiding source for basic dashboard widget and configuration functionality.
 
-SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
@@ -66,7 +65,7 @@ export default {
 			loading: true,
 			number: 0,
 			content: 'empty',
-			extraWide: false
+			extraWide: false,
 		}
 	},
 	computed: {
@@ -81,7 +80,7 @@ export default {
 		getConfig() {
 			const url = generateUrl('/apps/externalportal/config')
 			axios.get(url).then((response) => {
-        this.extraWide = response.data.extraWide;
+				this.extraWide = response.data.extraWide
 				console.debug('"' + JSON.stringify(response.data) + '"')
 			}).catch((error) => {
 				console.debug(error)
@@ -89,9 +88,9 @@ export default {
 				if (this.number > 6 && this.extraWide) {
 					document.getElementById('external-portal-widget').parentNode.parentNode.style.width = '400px'
 				}
-				})
-			},
-			
+			})
+		},
+
 		getContent() {
 			let url = generateOcsUrl('apps/external/api/v1', 2)
 			if (url.endsWith('/')) { // behaviour seems to have changed between 24 and 25
