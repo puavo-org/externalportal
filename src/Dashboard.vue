@@ -49,7 +49,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <script>
 
 import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 
 export default {
 	name: 'Dashboard',
@@ -66,16 +66,32 @@ export default {
 			loading: true,
 			number: 0,
 			content: 'empty',
+			extraWide: false
 		}
 	},
 	computed: {
 	},
 	beforeMount() {
+		this.getConfig()
 		this.getContent()
 	},
 	mounted() {
 	},
 	methods: {
+		getConfig() {
+			const url = generateUrl('/apps/externalportal/config')
+			axios.get(url).then((response) => {
+        this.extraWide = response.data.extraWide;
+				console.debug('"' + JSON.stringify(response.data) + '"')
+			}).catch((error) => {
+				console.debug(error)
+			}).then(() => {
+				if (this.number > 6 && this.extraWide) {
+					document.getElementById('external-portal-widget').parentNode.parentNode.style.width = '400px'
+				}
+				})
+			},
+			
 		getContent() {
 			let url = generateOcsUrl('apps/external/api/v1', 2)
 			if (url.endsWith('/')) { // behaviour seems to have changed between 24 and 25
@@ -89,7 +105,7 @@ export default {
 				console.debug(error)
 			}).then(() => {
 				this.loading = false
-				if (this.number > 6) {
+				if (this.number > 6 && this.extraWide) {
 					document.getElementById('external-portal-widget').parentNode.parentNode.style.width = '400px'
 				}
 			})

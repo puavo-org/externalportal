@@ -41,9 +41,11 @@ class Admin implements ISettings {
 	 */
 	public function getForm(): TemplateResponse {
 		$widgetTitle = $this->config->getAppValue(Application::APP_ID, 'widgetTitle', '');
+		$extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
 
 		$adminConfig = [
 			'widgetTitle' => $widgetTitle,
+			'extraWide' => $extraWide,
 		];
 		$this->initialStateService->provideInitialState('admin-config', $adminConfig);
 		return new TemplateResponse(Application::APP_ID, 'adminSettings');
