@@ -74,7 +74,7 @@ class ExternalPortalWidget implements IWidget {
    * @return string css class that displays an icon next to the widget title
    */
   public function getIconClass(): string {
-    return 'icon-class';
+    return 'icon-externalportal';
   }
   
   /**

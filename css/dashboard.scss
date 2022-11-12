@@ -1,5 +1,3 @@
-<?php
-
 /**
  * @copyright Copyright (c) 2022 Opinsys Oy <dev@opinsys.fi>
  *
@@ -26,34 +24,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
  *
  */
  
-namespace OCA\ExternalPortal\Settings;
+.icon-externalportal {
+    background-image: url('../img/externalportal-dark.svg');
+    filter: var(--background-invert-if-dark);
+}
 
-use OCP\IL10N;
-use OCP\IURLGenerator;
-use OCP\Settings\IIconSection;
-
-class Section implements IIconSection {
-	private IL10N $l;
-	private IURLGenerator $url;
-
-	public function __construct(IURLGenerator $url, IL10N $l) {
-		$this->url = $url;
-		$this->l = $l;
-	}
-
-	public function getIcon(): string {
-		return $this->url->imagePath('externalportal', 'externalportal-dark.svg');
-	}
-
-	public function getID(): string {
-		return 'externalportal';
-	}
-
-	public function getName(): string {
-		return $this->l->t('External portal');
-	}
-
-	public function getPriority(): int {
-		return 56; // externalsites is 55
-	}
+body.theme--dark .icon-externalportal {
+    background-image: url('../img/externalportal.svg');
 }

@@ -40,14 +40,11 @@ use OCA\ExternalPortal\AppInfo\Application;
 
 class Admin implements ISettings {
 
-
-
         /** @var IConfig */
         private $config;
 
         /** @var IL10N */
         private $l;
-
 
         /**
          * Admin constructor.

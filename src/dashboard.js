@@ -5,6 +5,8 @@ import Vue from 'vue'
 
 import Dashboard from './Dashboard.vue'
 
+import '../css/dashboard.scss'
+
 Vue.prototype.$OC = OC
 Vue.prototype.$OCA = OCA
 Vue.prototype.$appVersion = '0.0.1'
