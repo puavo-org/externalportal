@@ -2,14 +2,14 @@
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <!--
-    SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+    SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
     SPDX-License-Identifier: CC0-1.0
     -->
     <id>externalportal</id>
     <name>External Portal</name>
     <summary>Dashboard Portal Widget</summary>
-    <description><![CDATA[A dashboard widget that displays the content from External Sites app on Dashboard in a pretty and inviting form.]]></description>
-    <version>0.0.1</version>
+    <description><![CDATA[A dashboard widget that displays the content from the External sites app on Dashboard in a nice and inviting form.]]></description>
+    <version>1.0.0</version>
     <licence>agpl</licence>
     <author mail="dev@opinsys.fi" homepage="https://puavo.org">Tuomas Nurmi</author>
     <namespace>ExternalPortal</namespace>

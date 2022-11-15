@@ -1,9 +1,12 @@
 <!--
-SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
+SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
 SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal
+A Nextcloud Dashboard widget providing a view of the current user's external sites. This app uses directly the sites provided by External sites' ( https://apps.nextcloud.com/apps/external ) API, which is thus required for meaningful usage of this app.
+This app is not affiliated with the External sites app. Implementing the corresponding functionality in the External sites app would have also been a possibility - however, due to the very limited interoperability required, a separate app was chosen as a lighter solution.
+
 Place this app in **nextcloud/apps/**
 
 ## Building the app
