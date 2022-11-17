@@ -86,13 +86,13 @@ export default {
 				console.debug(error)
 			}).then(() => {
 				if (this.showFiles) {
-				  let filesUrl = generateUrl('/apps/files')
-				  let filesIconUrl = generateUrl('../apps/files/img/app.svg')
-				  let filesLabel = document.querySelector('li[data-app-id="files"]');
-				  if(filesLabel) {
-				    filesLabel=filesLabel.children[0].innerText;
+					const filesUrl = generateUrl('/apps/files')
+					const filesIconUrl = generateUrl('../apps/files/img/app.svg')
+					let filesLabel = document.querySelector('li[data-app-id="files"]')
+					if (filesLabel) {
+						filesLabel = filesLabel.children[0].innerText
 				  }
-					this.content=[{"icon": filesIconUrl, "url": filesUrl, "name": filesLabel, "sameWindow": true}].concat(this.content)
+					this.content = [{ icon: filesIconUrl, url: filesUrl, name: filesLabel, sameWindow: true }].concat(this.content)
 					this.number = this.content.length
 				}
 				if (this.number > 6 && this.extraWide) {
@@ -107,7 +107,7 @@ export default {
 				url = url.slice(0, -1)
 			}
 			axios.get(url).then((response) => {
-				this.content=this.content.concat(response.data.ocs.data)
+				this.content = this.content.concat(response.data.ocs.data)
 				this.number = this.content.length
 				console.debug('"' + JSON.stringify(response.data) + '"')
 				console.debug('"' + JSON.stringify(this.content) + '"')

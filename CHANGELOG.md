@@ -4,6 +4,13 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal changelog
+## [1.0.1] - 2022-11-18
+### Added
+- Option to include a link to the Files app.
+
+### Fixed
+- Better positioning with long page titles, better positioning avoiding clipping of elements.
+- Makefile parameters improved for better packaging workflow.
 
 ## [1.0.0] - 2022-11-15
 ### Added

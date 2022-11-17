@@ -9,7 +9,7 @@ import '../css/dashboard.scss'
 
 Vue.prototype.$OC = OC
 Vue.prototype.$OCA = OCA
-Vue.prototype.$appVersion = '1.0.0'
+Vue.prototype.$appVersion = '1.0.1'
 
 document.addEventListener('DOMContentLoaded', () => {
 	OCA.Dashboard.register('externalportal', (el) => {
