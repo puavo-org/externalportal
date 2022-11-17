@@ -27,7 +27,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 			<div v-for="item in content"
 				:key="item.id"
 				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6}">
-				<a :href="item.url" target="_blank">
+				<a v-bind="{ target: item.sameWindow ? '' : '_blank' }" :href="item.url">
 					<img class="linkitem"
 						width="100%"
 						height="100%"
@@ -64,7 +64,7 @@ export default {
 		return {
 			loading: true,
 			number: 0,
-			content: 'empty',
+			content: [],
 			extraWide: false,
 			showFiles: false,
 		}
@@ -87,6 +87,16 @@ export default {
 			}).catch((error) => {
 				console.debug(error)
 			}).then(() => {
+				if (this.showFiles) {
+				  let filesUrl = generateUrl('/apps/files')
+				  let filesIconUrl = generateUrl('../apps/files/img/app.svg')
+				  let filesLabel = document.querySelector('li[data-app-id="files"]');
+				  if(filesLabel) {
+				    filesLabel=filesLabel.children[0].innerText;
+				  }
+					this.content=[{"icon": filesIconUrl, "url": filesUrl, "name": filesLabel, "sameWindow": true}].concat(this.content)
+					this.number = this.content.length
+				}
 				if (this.number > 6 && this.extraWide) {
 					document.getElementById('external-portal-widget').parentNode.parentNode.style.width = '400px'
 				}
@@ -99,9 +109,10 @@ export default {
 				url = url.slice(0, -1)
 			}
 			axios.get(url).then((response) => {
-				this.content = response.data.ocs.data
+				this.content=this.content.concat(response.data.ocs.data)
 				this.number = this.content.length
 				console.debug('"' + JSON.stringify(response.data) + '"')
+				console.debug('"' + JSON.stringify(this.content) + '"')
 			}).catch((error) => {
 				console.debug(error)
 			}).then(() => {
