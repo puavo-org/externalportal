@@ -29,8 +29,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6}">
 				<a v-bind="{ target: item.sameWindow ? '' : '_blank' }" :href="item.url">
 					<img class="linkitem"
-						width="100%"
-						height="100%"
 						preserveAspectRatio="xMinYMin meet"
 						:src="item.icon">
 					<span class="linkname">
@@ -135,7 +133,9 @@ text-align: center;
 div {
 	width: 48%;
 	display: inline-block;
+	vertical-align: top;
 	padding-inline: 0.1rem;
+	margin-bottom: -1rem;
 
 	img {
 		padding: 0.5rem;
@@ -155,6 +155,11 @@ div.smaller {
 }
 div.smallest {
 	width: 30%;
+}
+.linkitem {
+	width: 95%;
+	height: 95%;
+	margin-top: 0.5rem;
 }
 .linkitem:hover {
 	transition: transform .2s;
