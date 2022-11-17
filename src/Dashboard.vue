@@ -66,6 +66,7 @@ export default {
 			number: 0,
 			content: 'empty',
 			extraWide: false,
+			showFiles: false,
 		}
 	},
 	computed: {
@@ -81,6 +82,7 @@ export default {
 			const url = generateUrl('/apps/externalportal/config')
 			axios.get(url).then((response) => {
 				this.extraWide = response.data.extraWide
+				this.showFiles = response.data.showFiles
 				console.debug('"' + JSON.stringify(response.data) + '"')
 			}).catch((error) => {
 				console.debug(error)
