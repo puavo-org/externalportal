@@ -88,10 +88,7 @@ export default {
 				if (this.showFiles) {
 					const filesUrl = generateUrl('/apps/files')
 					const filesIconUrl = generateUrl('../apps/files/img/app.svg')
-					let filesLabel = document.querySelector('li[data-app-id="files"]')
-					if (filesLabel) {
-						filesLabel = filesLabel.children[0].innerText
-				  }
+					const filesLabel = t('files', 'Files')
 					this.content = [{ icon: filesIconUrl, url: filesUrl, name: filesLabel, sameWindow: true }].concat(this.content)
 					this.number = this.content.length
 				}
