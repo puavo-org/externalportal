@@ -130,10 +130,13 @@ appstore:
 	--exclude="../$(app_name)/build" \
 	--exclude="../$(app_name)/tests" \
 	--exclude="../$(app_name)/Makefile" \
+	--exclude="../$(app_name)/*config*" \
 	--exclude="../$(app_name)/*.log" \
 	--exclude="../$(app_name)/phpunit*xml" \
 	--exclude="../$(app_name)/composer.*" \
 	--exclude="../$(app_name)/js/node_modules" \
+	--exclude="../$(app_name)/node_modules" \
+	--exclude="../$(app_name)/src" \
 	--exclude="../$(app_name)/js/tests" \
 	--exclude="../$(app_name)/js/test" \
 	--exclude="../$(app_name)/js/*.log" \
@@ -142,6 +145,8 @@ appstore:
 	--exclude="../$(app_name)/js/karma.*" \
 	--exclude="../$(app_name)/js/protractor.*" \
 	--exclude="../$(app_name)/package.json" \
+	--exclude="../$(app_name)/package-lock.json" \
+	--exclude="../$(app_name)/screenshot*" \
 	--exclude="../$(app_name)/bower.json" \
 	--exclude="../$(app_name)/karma.*" \
 	--exclude="../$(app_name)/protractor\.*" \
