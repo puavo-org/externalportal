@@ -4,6 +4,11 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal changelog
+## [1.0.2] - 2022-11-21
+### Fixed
+- Packaging/package signing to avoid issues with integrity check showing missing files.
+- More Makefile parameters improvements for better packaging workflow.
+
 ## [1.0.1] - 2022-11-18
 ### Added
 - Option to include a link to the Files app.
