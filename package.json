@@ -28,7 +28,7 @@
     "@nextcloud/vue": "^5.4.0",
     "@nextcloud/vue-dashboard": "^2.0.0",
     "vue": "^2.7.0",
-    "webpack": "^5.74.0"
+    "webpack": ">=5.76.0"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
