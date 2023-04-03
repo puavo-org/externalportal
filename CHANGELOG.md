@@ -4,8 +4,9 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal changelog
-## [1.1.0] - TBA
+## [1.1.0] - 2023-04-03
 ### Added
+- Option to limit icon maximum size to avoid overly stretched pixmap icons
 - Bump supported Nextcloud versions.
 ### Fixed
 - Update dependencies to fix some security issues.

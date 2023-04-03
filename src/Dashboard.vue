@@ -26,7 +26,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 		<span v-else-if="number > 0">
 			<div v-for="item in content"
 				:key="item.id"
-				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6}">
+				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6, maxsized: maxSize}">
 				<a v-bind="{ target: item.sameWindow ? '' : '_blank' }" :href="item.url">
 					<img class="linkitem"
 						preserveAspectRatio="xMinYMin meet"
@@ -47,6 +47,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
+import { translate as t } from '@nextcloud/l10n'
 
 export default {
 	name: 'Dashboard',
@@ -64,6 +65,7 @@ export default {
 			number: 0,
 			content: [],
 			extraWide: false,
+			maxSize: false,
 			showFiles: false,
 		}
 	},
@@ -80,6 +82,7 @@ export default {
 			const url = generateUrl('/apps/externalportal/config')
 			axios.get(url).then((response) => {
 				this.extraWide = response.data.extraWide
+				this.maxSize = response.data.maxSize
 				this.showFiles = response.data.showFiles
 				console.debug('"' + JSON.stringify(response.data) + '"')
 			}).catch((error) => {
@@ -152,6 +155,10 @@ div.smaller {
 }
 div.smallest {
 	width: 30%;
+}
+div.maxsized {
+	max-width: 64px;
+	margin: 0.5rem;
 }
 .linkitem {
 	width: 95%;

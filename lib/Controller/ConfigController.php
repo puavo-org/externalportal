@@ -78,8 +78,9 @@ class ConfigController extends Controller {
 	public function getConfig(): DataResponse {
 	
 		$extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
+		$maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
 		$showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
-		return new DataResponse(['extraWide' => $extraWide, 'showFiles' => $showFiles]);
+		return new DataResponse(['extraWide' => $extraWide, 'showFiles' => $showFiles, 'maxSize' => $maxSize]);
 	}
 	
 	}

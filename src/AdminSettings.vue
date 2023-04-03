@@ -38,6 +38,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 		<label for="extraWide">Make the widget wider when there are many links</label>
 		<input v-model="state.extraWide" type="checkbox" name="extraWide">
 		<br>
+		<label for="maxSize">Limit maximum icon size to to avoid over-stretching 32x32 pixmap icons</label>
+		<input v-model="state.maxSize" type="checkbox" name="maxSize">
+		<br>
 		<label for="showFiles">Show Files link for everyone</label>
 		<input v-model="state.showFiles" type="checkbox" name="showFiles">
 		<br>
@@ -68,6 +71,7 @@ export default {
 			this.saving = true
 			const values = {
 				widgetTitle: this.state.widgetTitle,
+				maxSize: this.state.maxSize,
 				extraWide: this.state.extraWide,
 				showFiles: this.state.showFiles,
 			}
