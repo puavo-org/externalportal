@@ -19,13 +19,13 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
-SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
-SPDX-License-Identifier: AGPL-3.0-or-later
+ *
+ *
+ * SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  *
  */
- 
+
 namespace OCA\ExternalPortal\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
@@ -40,26 +40,26 @@ use OCA\ExternalPortal\AppInfo\Application;
 
 class Admin implements ISettings {
 
-        /** @var IConfig */
-        private $config;
+	/** @var IConfig */
+	private $config;
 
-        /** @var IL10N */
-        private $l;
+	/** @var IL10N */
+	private $l;
 
-        /**
-         * Admin constructor.
-         *
-         * @param IConfig $config
-         * @param IL10N $l
-         */
-        public function __construct(IConfig $config,
-                                                                IL10N $l,
-				    IInitialState $initialStateService
-        ) {
-                $this->config = $config;
-                $this->l = $l;
+	/**
+	 * Admin constructor.
+	 *
+	 * @param IConfig $config
+	 * @param IL10N $l
+	 */
+	public function __construct(IConfig       $config,
+								IL10N         $l,
+								IInitialState $initialStateService) {
+		$this->config = $config;
+		$this->l = $l;
 		$this->initialStateService = $initialStateService;
-        }
+	}
+
 	/**
 	 * @return TemplateResponse
 	 */
