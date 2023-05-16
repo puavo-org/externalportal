@@ -29,11 +29,9 @@
 namespace OCA\ExternalPortal\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IRequest;
 use OCP\IL10N;
 use OCP\IConfig;
 use OCP\Settings\ISettings;
-use OCP\IURLGenerator;
 use OCP\AppFramework\Services\IInitialState;
 
 use OCA\ExternalPortal\AppInfo\Application;
@@ -68,12 +66,16 @@ class Admin implements ISettings {
 		$extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
 		$maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
 		$showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
+		$iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
+		$customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
 
 		$adminConfig = [
 			'widgetTitle' => $widgetTitle,
 			'extraWide' => $extraWide,
 			'maxSize' => $maxSize,
 			'showFiles' => $showFiles,
+			'iconColorMode' => $iconColorMode,
+			'customIconColor' => $customIconColor
 		];
 		$this->initialStateService->provideInitialState('admin-config', $adminConfig);
 		return new TemplateResponse(Application::APP_ID, 'adminSettings');

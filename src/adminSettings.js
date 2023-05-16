@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import Vue from 'vue'
-import { translate as t, translatePlural as n } from '@nextcloud/l10n'
+import {translate as t, translatePlural as n} from '@nextcloud/l10n'
 
 import AdminSettings from './AdminSettings.vue'
 
@@ -13,6 +13,10 @@ Vue.mixin({
 		n,
 	},
 })
+
+Vue.prototype.$OC = OC
+Vue.prototype.$OCA = OCA
+Vue.prototype.$appVersion = '1.0.2'
 
 export default new Vue({
 	el: '#externalportal_prefs',
