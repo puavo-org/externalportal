@@ -49,6 +49,20 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 				<label for="showFiles">Show Files link for everyone</label>
 				<input v-model="state.showFiles" type="checkbox" name="showFiles">
 			</div>
+			<div class="settings">
+				<label for="iconColorMode">Icon Colors</label>
+				<select v-model="state.iconColorMode" name="iconColorMode">
+					<option value="THEMING">Use theme color</option>
+					<option value="PRIMARY">Use text color</option>
+					<option value="DEFAULT">Use icons as-is</option>
+					<option value="CUSTOM">Use custom color</option>
+				</select>
+			</div>
+			<div class="setting" v-if="state.iconColorMode === 'CUSTOM'">
+				<NcInputField type="color"
+							  label="custom icon color"
+							  v-model="state.customIconColor"></NcInputField>
+			</div>
 			<div class="setting">
 				<button color="primary" @click="saveSettings">
 					Save
@@ -86,11 +100,13 @@ import axios from '@nextcloud/axios'
 import {generateUrl} from '@nextcloud/router'
 import {showSuccess, showError} from '@nextcloud/dialogs'
 import Dashboard from "./Dashboard.vue";
+import NcInputField from "@nextcloud/vue/dist/Components/NcInputField"
 
 export default {
 	name: 'AdminSettings',
 	components: {
-		Dashboard
+		Dashboard,
+		NcInputField
 	},
 	props: [],
 	data() {
@@ -107,6 +123,8 @@ export default {
 				maxSize: this.state.maxSize,
 				extraWide: this.state.extraWide,
 				showFiles: this.state.showFiles,
+				iconColorMode: this.state.iconColorMode,
+				customIconColor: this.state.customIconColor
 			}
 			const req = {
 				values,

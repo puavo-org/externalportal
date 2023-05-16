@@ -23,12 +23,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <template>
 	<div id="external-portal-widget">
 		<div v-if="loading" class="icon icon-loading"/>
-		<span v-else-if="number > 0">
+		<span v-else-if="number > 0" class="external-sites">
 			<div v-for="item in content"
 				 :key="item.id"
-				 :class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6, maxsized: maxSize}">
+				 :class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6, maxsized: maxSize, externalsite: true}">
 				<a v-bind="{ target: item.sameWindow ? '' : '_blank' }" :href="item.url">
-					<img class="linkitem"
+					<div v-if="themingColor !== undefined" class="linkitem masked-icon"
+						 :style="`-webkit-mask-image: url(${item.icon}); mask-image: url(${item.icon}); backgroundColor: ${themingColor}`"></div>
+					<img v-else class="linkitem"
 						 preserveAspectRatio="xMinYMin meet"
 						 :src="item.icon">
 					<span class="linkname">
@@ -51,7 +53,6 @@ import {translate as t} from '@nextcloud/l10n'
 
 export default {
 	name: 'Dashboard',
-	components: {},
 	props: {
 		title: {
 			type: String,
@@ -66,9 +67,22 @@ export default {
 			extraWide: false,
 			maxSize: false,
 			showFiles: false,
+			iconColorMode: "DEFAULT",
+			customIconColor: ""
 		}
 	},
-	computed: {},
+	computed: {
+		themingColor: function () {
+			if (this.iconColorMode === "CUSTOM")
+				return this.customIconColor;
+			else if (!this.$OCA.Theming || this.iconColorMode === "PRIMARY")
+				return "var(--color-main-text)";
+			else if (this.iconColorMode === "THEMING")
+				return this.$OCA.Theming.color;
+			else
+				return undefined;
+		}
+	},
 	beforeMount() {
 		this.getConfig()
 		this.getContent()
@@ -84,6 +98,8 @@ export default {
 				this.extraWide = response.data.extraWide
 				this.maxSize = response.data.maxSize
 				this.showFiles = response.data.showFiles
+				this.iconColorMode = response.data.iconColorMode;
+				this.customIconColor = response.data.customIconColor
 			} catch (e) {
 				console.log(e)
 			}
@@ -142,22 +158,40 @@ overflow-y: scroll;
 height: 100%;
 text-align: center;
 
-div {
+span.external-sites {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+div.externalsite {
 	width: 48%;
 	display: inline-block;
 	vertical-align: top;
 	padding-inline: 0.1rem;
-	margin-bottom: -1rem;
 
-	img {
+	div.masked-icon, img {
 		padding: 0.5rem;
 		-webkit-filter: drop-shadow(5px 5px 5px #888);
 		filter: drop-shadow(5px 5px 5px #888);
 	}
 
+	div.masked-icon {
+		background-color: var(--color-primary);
+		mask-size: 90%;
+		mask-position: center;
+		mask-repeat: no-repeat;
+		-webkit-mask-size: 90%;
+		-webkit-mask-position: center;
+		-webkit-mask-repeat: no-repeat;
+		aspect-ratio: 1;
+		box-sizing: border-box;
+		height: auto;
+		padding: 4px;
+	}
+
 	.linkname {
-		position: relative;
-		top: -0.75rem;
+		text-align: center;
 	}
 }
 

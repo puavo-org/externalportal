@@ -18,10 +18,10 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
-SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
-SPDX-License-Identifier: AGPL-3.0-or-later
+ *
+ *
+ * SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  *
  */
 
@@ -71,16 +71,23 @@ class ConfigController extends Controller {
 		}
 		return new DataResponse(1);
 	}
-	
-  /**
+
+	/**
 	 * @NoAdminRequired
 	 */
 	public function getConfig(): DataResponse {
-	
+
 		$extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
 		$maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
 		$showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
-		return new DataResponse(['extraWide' => $extraWide, 'showFiles' => $showFiles, 'maxSize' => $maxSize]);
+		$iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
+		$customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
+		return new DataResponse([
+			'extraWide' => $extraWide,
+			'showFiles' => $showFiles,
+			'maxSize' => $maxSize,
+			'iconColorMode' => $iconColorMode,
+			'customIconColor' => $customIconColor]);
 	}
-	
-	}
+
+}
