@@ -116,8 +116,8 @@ export default {
 			try {
 				await axios.put(url, req)
 			} catch (e) {
-				showError(t('externalportal', 'Failed to save external portal options') + `: ${error.response?.request?.responseText ?? ''}`)
-				console.debug(error)
+				showError(t('externalportal', 'Failed to save external portal options') + `: ${e.response?.request?.responseText ?? ''}`)
+				console.debug(e)
 			}
 			showSuccess(t('externalportal', 'External portal options saved'))
 			this.saving = false
