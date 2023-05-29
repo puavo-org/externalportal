@@ -22,17 +22,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <template>
 	<div id="external-portal-widget">
-		<div v-if="loading" class="icon icon-loading"/>
+		<div v-if="loading" class="icon icon-loading" />
 		<span v-else-if="number > 0" class="external-sites">
 			<div v-for="item in content"
-				 :key="item.id"
-				 :class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6, maxsized: maxSize, externalsite: true}">
+				:key="item.id"
+				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6, maxsized: maxSize, externalsite: true}">
 				<a v-bind="{ target: item.sameWindow ? '' : '_blank' }" :href="item.url">
-					<div v-if="themingColor !== undefined" class="linkitem masked-icon"
-						 :style="`-webkit-mask-image: url(${item.icon}); mask-image: url(${item.icon}); backgroundColor: ${themingColor}`"></div>
-					<img v-else class="linkitem"
-						 preserveAspectRatio="xMinYMin meet"
-						 :src="item.icon">
+					<div v-if="themingColor !== undefined"
+						class="linkitem masked-icon"
+						:style="`-webkit-mask-image: url(${item.icon}); mask-image: url(${item.icon}); backgroundColor: ${themingColor}`" />
+					<img v-else
+						class="linkitem"
+						preserveAspectRatio="xMinYMin meet"
+						:src="item.icon">
 					<span class="linkname">
 						{{ item.name }}
 					</span>
@@ -48,8 +50,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <script>
 
 import axios from '@nextcloud/axios'
-import {generateOcsUrl, generateUrl} from '@nextcloud/router'
-import {translate as t} from '@nextcloud/l10n'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
+import { translate as t } from '@nextcloud/l10n'
 
 export default {
 	name: 'Dashboard',
@@ -67,21 +69,22 @@ export default {
 			extraWide: false,
 			maxSize: false,
 			showFiles: false,
-			iconColorMode: "DEFAULT",
-			customIconColor: ""
+			iconColorMode: 'DEFAULT',
+			customIconColor: '',
 		}
 	},
 	computed: {
-		themingColor: function () {
-			if (this.iconColorMode === "CUSTOM")
-				return this.customIconColor;
-			else if (!this.$OCA.Theming || this.iconColorMode === "PRIMARY")
-				return "var(--color-main-text)";
-			else if (this.iconColorMode === "THEMING")
-				return this.$OCA.Theming.color;
-			else
-				return undefined;
-		}
+		themingColor() {
+			if (this.iconColorMode === 'CUSTOM') {
+				return this.customIconColor
+			} else if (!this.$OCA.Theming || this.iconColorMode === 'PRIMARY') {
+				return 'var(--color-main-text)'
+			} else if (this.iconColorMode === 'THEMING') {
+				return this.$OCA.Theming.color
+			} else {
+				return undefined
+			}
+		},
 	},
 	beforeMount() {
 		this.getConfig()
@@ -98,10 +101,10 @@ export default {
 				this.extraWide = response.data.extraWide
 				this.maxSize = response.data.maxSize
 				this.showFiles = response.data.showFiles
-				this.iconColorMode = response.data.iconColorMode;
+				this.iconColorMode = response.data.iconColorMode
 				this.customIconColor = response.data.customIconColor
 			} catch (e) {
-				console.log(e)
+				console.debug(e)
 			}
 
 			if (this.showFiles) {
@@ -112,7 +115,7 @@ export default {
 					icon: filesIconUrl,
 					url: filesUrl,
 					name: filesLabel,
-					sameWindow: true
+					sameWindow: true,
 				}].concat(this.content)
 				this.number = this.content.length
 			}
@@ -147,7 +150,7 @@ export default {
 			this.number = 0
 			await this.getConfig()
 			await this.getContent()
-		}
+		},
 	},
 }
 </script>

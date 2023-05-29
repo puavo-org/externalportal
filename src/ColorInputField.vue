@@ -4,23 +4,23 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
 	<NcInputField v-bind="{...$attrs, ...$props }"
-				  ref="inputField"
-				  type="color"
-				  :show-trailing-button="false"
-				  v-on="$listeners"
-				  @input="handleInput">
+		ref="inputField"
+		type="color"
+		:show-trailing-button="false"
+		v-on="$listeners"
+		@input="handleInput">
 		<!-- Default slot for the leading icon -->
 		<slot />
 	</NcInputField>
 </template>
 
 <script>
-import NcInputField from "@nextcloud/vue/dist/Components/NcInputField"
+import { NcInputField } from '@nextcloud/vue/dist/Components/NcInputField.js'
 
 export default {
 	name: 'ColorInputField',
 	components: {
-		NcInputField
+		NcInputField,
 	},
 	// Allow forwarding all attributes
 	inheritAttrs: false,
@@ -56,8 +56,7 @@ export default {
 			 * @property {string} The new value
 			 */
 			this.$emit('update:value', event.target.value)
-		}
-	}
-
+		},
+	},
 }
 </script>

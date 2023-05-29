@@ -28,14 +28,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 			</h2>
 			<div class="setting">
 				<label for="externaportal-widget-title">
-					<span class="icon icon-file"/>
+					<span class="icon icon-file" />
 					Widget title
 				</label>
 				<input id="externaportal-widget-title"
-					   v-model="state.widgetTitle"
-					   type="text"
-					   :class="{ 'icon-loading-small': saving }"
-					   :placeholder="('External portal')">
+					v-model="state.widgetTitle"
+					type="text"
+					:class="{ 'icon-loading-small': saving }"
+					:placeholder="('External portal')">
 			</div>
 			<div class="setting">
 				<label for="extraWide">Make the widget wider when there are many links</label>
@@ -59,9 +59,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 				</select>
 			</div>
 			<div class="setting" v-if="state.iconColorMode === 'CUSTOM'">
-				<ColorInputField
-							  label="custom icon color"
-							  :value.sync="state.customIconColor"></ColorInputField>
+				<ColorInputField label="custom icon color"
+					:value.sync="state.customIconColor" />
 			</div>
 			<div class="setting">
 				<button color="primary" @click="saveSettings">
@@ -76,9 +75,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 					<div class="panel--header">
 						<h2>
 							<div aria-labelledby="panel--header--icon--description"
-								 aria-hidden="true"
-								 class="icon-externalportal"
-								 role="img"/>
+								aria-hidden="true"
+								class="icon-externalportal"
+								role="img" />
 							{{ this.state.widgetTitle || "External Portal" }}
 						</h2>
 						<span id="panel--header--icon--description" class="hidden-visually">
@@ -86,7 +85,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 						</span>
 					</div>
 					<div class="panel--content">
-						<Dashboard ref="dashboard" :title="this.state.widgetTitle"></Dashboard>
+						<Dashboard ref="dashboard" :title="this.state.widgetTitle" />
 					</div>
 				</div>
 			</div>
@@ -95,18 +94,18 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 </template>
 
 <script>
-import {loadState} from '@nextcloud/initial-state'
+import { loadState } from '@nextcloud/initial-state'
 import axios from '@nextcloud/axios'
-import {generateUrl} from '@nextcloud/router'
-import {showSuccess, showError} from '@nextcloud/dialogs'
-import Dashboard from "./Dashboard.vue";
-import ColorInputField from "./ColorInputField.vue";
+import { generateUrl } from '@nextcloud/router'
+import { showSuccess, showError } from '@nextcloud/dialogs'
+import Dashboard from './Dashboard.vue'
+import ColorInputField from './ColorInputField.vue'
 
 export default {
 	name: 'AdminSettings',
 	components: {
 		Dashboard,
-		ColorInputField
+		ColorInputField,
 	},
 	props: [],
 	data() {
@@ -124,7 +123,7 @@ export default {
 				extraWide: this.state.extraWide,
 				showFiles: this.state.showFiles,
 				iconColorMode: this.state.iconColorMode,
-				customIconColor: this.state.customIconColor
+				customIconColor: this.state.customIconColor,
 			}
 			const req = {
 				values,
@@ -140,7 +139,7 @@ export default {
 			showSuccess(t('externalportal', 'External portal options saved'))
 			this.saving = false
 			await this.$refs.dashboard.reload()
-		}
+		},
 	},
 }
 </script>
