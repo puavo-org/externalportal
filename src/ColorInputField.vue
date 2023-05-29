@@ -1,3 +1,7 @@
+<!--
+SPDX-FileCopyrightText: Tobias Knöppler 6317548+thecalcaholic@users.noreply.github.com
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <template>
 	<NcInputField v-bind="{...$attrs, ...$props }"
 				  ref="inputField"
