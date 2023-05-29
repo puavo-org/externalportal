@@ -166,6 +166,7 @@ span.external-sites {
 
 div.externalsite {
 	width: 48%;
+	height: 48%;
 	display: inline-block;
 	vertical-align: top;
 	padding-inline: 0.1rem;
@@ -201,14 +202,17 @@ div.icon-loading {
 
 div.smaller {
 	width: 39%;
+	height: 39%;
 }
 
 div.smallest {
 	width: 30%;
+	height: 30%;
 }
 
 div.maxsized {
 	max-width: 64px;
+	max-height: 64px;
 	margin: 0.5rem;
 }
 
