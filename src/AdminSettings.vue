@@ -59,9 +59,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 				</select>
 			</div>
 			<div class="setting" v-if="state.iconColorMode === 'CUSTOM'">
-				<NcInputField type="color"
+				<ColorInputField
 							  label="custom icon color"
-							  v-model="state.customIconColor"></NcInputField>
+							  :value.sync="state.customIconColor"></ColorInputField>
 			</div>
 			<div class="setting">
 				<button color="primary" @click="saveSettings">
@@ -100,13 +100,13 @@ import axios from '@nextcloud/axios'
 import {generateUrl} from '@nextcloud/router'
 import {showSuccess, showError} from '@nextcloud/dialogs'
 import Dashboard from "./Dashboard.vue";
-import NcInputField from "@nextcloud/vue/dist/Components/NcInputField"
+import ColorInputField from "./ColorInputField.vue";
 
 export default {
 	name: 'AdminSettings',
 	components: {
 		Dashboard,
-		NcInputField
+		ColorInputField
 	},
 	props: [],
 	data() {
