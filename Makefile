@@ -120,7 +120,8 @@ source:
 	--exclude="../$(app_name)/js/*.log" \
 	../$(app_name)
 
-# Builds the source package for the app store, ignores php and js tests
+# Builds the source package for the app store, ignores php and js tests,
+# ignores php vendor packages as they're only used in tests
 .PHONY: appstore
 appstore:
 	rm -rf $(appstore_build_directory)
@@ -128,6 +129,7 @@ appstore:
 	tar cvzf  $(appstore_package_name).tar.gz \
 	--exclude-vcs \
 	--exclude="../$(app_name)/build" \
+	--exclude="../$(app_name)/vendor" \
 	--exclude="../$(app_name)/tests" \
 	--exclude="../$(app_name)/Makefile" \
 	--exclude="../$(app_name)/*config*" \
