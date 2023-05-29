@@ -1,7 +1,7 @@
 {
   "name": "externalportal",
   "description": "Dashboard Portal Widget",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Tuomas Nurmi <dev@opinsys.fi>",
   "contributors": [],
   "bugs": {

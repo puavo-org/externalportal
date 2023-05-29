@@ -16,7 +16,7 @@ Vue.mixin({
 
 Vue.prototype.$OC = OC
 Vue.prototype.$OCA = OCA
-Vue.prototype.$appVersion = '1.0.2'
+Vue.prototype.$appVersion = '1.2.0'
 
 export default new Vue({
 	el: '#externalportal_prefs',
