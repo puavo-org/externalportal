@@ -25,10 +25,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
  */
  
 .icon-externalportal {
-    background-image: url('../img/externalportal-dark.svg');
-    filter: var(--background-invert-if-dark);
+	background-image: url('../img/externalportal-dark.svg');
+	filter: var(--background-invert-if-dark);
 }
 
 body.theme--dark .icon-externalportal {
-    background-image: url('../img/externalportal.svg');
+	background-image: url('../img/externalportal.svg');
 }
