@@ -19,13 +19,13 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
+ *
+ *
 SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
 SPDX-License-Identifier: AGPL-3.0-or-later
  *
  */
- 
+
 $appId = OCA\ExternalPortal\AppInfo\Application::APP_ID;
 script($appId, $appId . '-admin');
 ?>

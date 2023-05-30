@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2022 Opinsys Oy <dev@opinsys.fi>
@@ -19,8 +20,8 @@ declare(strict_types=1);
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
+ *
+ *
 SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
 SPDX-License-Identifier: AGPL-3.0-or-later
  *
@@ -34,16 +35,20 @@ use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCA\ExternalPortal\Dashboard\ExternalPortalWidget;
 
-class Application extends App implements IBootstrap {
-  public const APP_ID = 'externalportal';
-  
-  public function __construct() {
-    parent::__construct(self::APP_ID);
-  }
-  
-  public function register(IRegistrationContext $context): void {
-    $context->registerDashboardWidget(ExternalPortalWidget::class);
-  }
-  public function boot(IBootContext $context): void {
-  }
+class Application extends App implements IBootstrap
+{
+    public const APP_ID = 'externalportal';
+
+    public function __construct()
+    {
+        parent::__construct(self::APP_ID);
+    }
+
+    public function register(IRegistrationContext $context): void
+    {
+        $context->registerDashboardWidget(ExternalPortalWidget::class);
+    }
+    public function boot(IBootContext $context): void
+    {
+    }
 }

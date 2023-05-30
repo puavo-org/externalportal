@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 // SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
 // SPDX-License-Identifier: AGPL-3.0-or-later
@@ -12,10 +13,10 @@ declare(strict_types=1);
  * it's instantiated in there
  */
 return [
-	'resources' => [
-	],
-	'routes' => [
+    'resources' => [
+    ],
+    'routes' => [
         ['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
         ['name' => 'config#getConfig', 'url' => '/config', 'verb' => 'GET'],
-	]
+    ]
 ];

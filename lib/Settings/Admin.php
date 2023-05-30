@@ -36,56 +36,61 @@ use OCP\AppFramework\Services\IInitialState;
 
 use OCA\ExternalPortal\AppInfo\Application;
 
-class Admin implements ISettings {
+class Admin implements ISettings
+{
+    /** @var IConfig */
+    private $config;
 
-	/** @var IConfig */
-	private $config;
+    /** @var IL10N */
+    private $l;
 
-	/** @var IL10N */
-	private $l;
+    /**
+     * Admin constructor.
+     *
+     * @param IConfig $config
+     * @param IL10N $l
+     */
+    public function __construct(
+        IConfig       $config,
+        IL10N         $l,
+        IInitialState $initialStateService
+    ) {
+        $this->config = $config;
+        $this->l = $l;
+        $this->initialStateService = $initialStateService;
+    }
 
-	/**
-	 * Admin constructor.
-	 *
-	 * @param IConfig $config
-	 * @param IL10N $l
-	 */
-	public function __construct(IConfig       $config,
-								IL10N         $l,
-								IInitialState $initialStateService) {
-		$this->config = $config;
-		$this->l = $l;
-		$this->initialStateService = $initialStateService;
-	}
+    /**
+     * @return TemplateResponse
+     */
+    public function getForm(): TemplateResponse
+    {
+        $widgetTitle = $this->config->getAppValue(Application::APP_ID, 'widgetTitle', '#000000');
+        $extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
+        $maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
+        $showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
+        $iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
+        $customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
 
-	/**
-	 * @return TemplateResponse
-	 */
-	public function getForm(): TemplateResponse {
-		$widgetTitle = $this->config->getAppValue(Application::APP_ID, 'widgetTitle', '#000000');
-		$extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
-		$maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
-		$showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
-		$iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
-		$customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
+        $adminConfig = [
+            'widgetTitle' => $widgetTitle,
+            'extraWide' => $extraWide,
+            'maxSize' => $maxSize,
+            'showFiles' => $showFiles,
+            'iconColorMode' => $iconColorMode,
+            'customIconColor' => $customIconColor
+        ];
+        $this->initialStateService->provideInitialState('admin-config', $adminConfig);
+        return new TemplateResponse(Application::APP_ID, 'adminSettings');
+    }
 
-		$adminConfig = [
-			'widgetTitle' => $widgetTitle,
-			'extraWide' => $extraWide,
-			'maxSize' => $maxSize,
-			'showFiles' => $showFiles,
-			'iconColorMode' => $iconColorMode,
-			'customIconColor' => $customIconColor
-		];
-		$this->initialStateService->provideInitialState('admin-config', $adminConfig);
-		return new TemplateResponse(Application::APP_ID, 'adminSettings');
-	}
+    public function getSection(): string
+    {
+        return 'externalportal';
+    }
 
-	public function getSection(): string {
-		return 'externalportal';
-	}
-
-	public function getPriority(): int {
-		return 10;
-	}
+    public function getPriority(): int
+    {
+        return 10;
+    }
 }

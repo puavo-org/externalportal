@@ -47,47 +47,51 @@ use OCP\AppFramework\Controller;
 
 use OCA\ExternalPortal\AppInfo\Application;
 
+class ConfigController extends Controller
+{
+    private $config;
+    private $dbtype;
 
-class ConfigController extends Controller {
-	private $config;
-	private $dbtype;
+    public function __construct(
+        $AppName,
+        IRequest $request,
+        IServerContainer $serverContainer,
+        IConfig $config,
+        IAppData $appData,
+        ?string $userId
+    ) {
+        parent::__construct($AppName, $request);
+        $this->userId = $userId;
+        $this->appData = $appData;
+        $this->serverContainer = $serverContainer;
+        $this->config = $config;
+    }
 
-	public function __construct($AppName,
-								IRequest $request,
-								IServerContainer $serverContainer,
-								IConfig $config,
-								IAppData $appData,
-								?string $userId) {
-		parent::__construct($AppName, $request);
-		$this->userId = $userId;
-		$this->appData = $appData;
-		$this->serverContainer = $serverContainer;
-		$this->config = $config;
-	}
+    public function setAdminConfig(array $values): DataResponse
+    {
+        foreach ($values as $key => $value) {
+            $this->config->setAppValue(Application::APP_ID, $key, $value);
+        }
+        return new DataResponse(1);
+    }
 
-	public function setAdminConfig(array $values): DataResponse {
-		foreach ($values as $key => $value) {
-			$this->config->setAppValue(Application::APP_ID, $key, $value);
-		}
-		return new DataResponse(1);
-	}
+    /**
+     * @NoAdminRequired
+     */
+    public function getConfig(): DataResponse
+    {
 
-	/**
-	 * @NoAdminRequired
-	 */
-	public function getConfig(): DataResponse {
-
-		$extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
-		$maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
-		$showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
-		$iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
-		$customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
-		return new DataResponse([
-			'extraWide' => $extraWide,
-			'showFiles' => $showFiles,
-			'maxSize' => $maxSize,
-			'iconColorMode' => $iconColorMode,
-			'customIconColor' => $customIconColor]);
-	}
+        $extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
+        $maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
+        $showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
+        $iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
+        $customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
+        return new DataResponse([
+            'extraWide' => $extraWide,
+            'showFiles' => $showFiles,
+            'maxSize' => $maxSize,
+            'iconColorMode' => $iconColorMode,
+            'customIconColor' => $customIconColor]);
+    }
 
 }

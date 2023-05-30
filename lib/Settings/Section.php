@@ -19,41 +19,47 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- * 
- * 
+ *
+ *
 SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
 SPDX-License-Identifier: AGPL-3.0-or-later
  *
  */
- 
+
 namespace OCA\ExternalPortal\Settings;
 
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
 
-class Section implements IIconSection {
-	private IL10N $l;
-	private IURLGenerator $url;
+class Section implements IIconSection
+{
+    private IL10N $l;
+    private IURLGenerator $url;
 
-	public function __construct(IURLGenerator $url, IL10N $l) {
-		$this->url = $url;
-		$this->l = $l;
-	}
+    public function __construct(IURLGenerator $url, IL10N $l)
+    {
+        $this->url = $url;
+        $this->l = $l;
+    }
 
-	public function getIcon(): string {
-		return $this->url->imagePath('externalportal', 'externalportal-dark.svg');
-	}
+    public function getIcon(): string
+    {
+        return $this->url->imagePath('externalportal', 'externalportal-dark.svg');
+    }
 
-	public function getID(): string {
-		return 'externalportal';
-	}
+    public function getID(): string
+    {
+        return 'externalportal';
+    }
 
-	public function getName(): string {
-		return $this->l->t('External portal');
-	}
+    public function getName(): string
+    {
+        return $this->l->t('External portal');
+    }
 
-	public function getPriority(): int {
-		return 56; // externalsites is 55
-	}
+    public function getPriority(): int
+    {
+        return 56; // externalsites is 55
+    }
 }
