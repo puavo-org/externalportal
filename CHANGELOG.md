@@ -4,9 +4,17 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal changelog
+## [1.2.0] - 2023-06-03
+### Added
+- Add preview to Admin Settings page.
+- Implement dynamically colored icons.
+### Changed
+- Update dependencies, require Nextcloud 25.
+- Enable more lint workflows and format code style accordingly.
+
 ## [1.1.0] - 2023-04-03
 ### Added
-- Option to limit icon maximum size to avoid overly stretched pixmap icons
+- Option to limit icon maximum size to avoid overly stretched pixmap icons.
 - Bump supported Nextcloud versions.
 ### Fixed
 - Update dependencies to fix some security issues.
