@@ -52,14 +52,22 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 			<div class="settings">
 				<label for="iconColorMode">Icon Colors</label>
 				<select v-model="state.iconColorMode" name="iconColorMode">
-					<option value="THEMING">Use theme color</option>
-					<option value="PRIMARY">Use text color</option>
-					<option value="DEFAULT">Use icons as-is</option>
-					<option value="CUSTOM">Use custom color</option>
+					<option value="THEMING">
+						Use theme color
+					</option>
+					<option value="PRIMARY">
+						Use text color
+					</option>
+					<option value="DEFAULT">
+						Use icons as-is
+					</option>
+					<option value="CUSTOM">
+						Use custom color
+					</option>
 				</select>
 			</div>
-			<div class="setting" v-if="state.iconColorMode === 'CUSTOM'">
-				<ColorInputField label="custom icon color"
+			<div v-if="state.iconColorMode === 'CUSTOM'" class="setting">
+				<ColorInputField label="Custom icon color"
 					:value.sync="state.customIconColor" />
 			</div>
 			<div class="setting">
@@ -78,14 +86,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 								aria-hidden="true"
 								class="icon-externalportal"
 								role="img" />
-							{{ this.state.widgetTitle || "External Portal" }}
+							{{ state.widgetTitle || "External Portal" }}
 						</h2>
 						<span id="panel--header--icon--description" class="hidden-visually">
-							{{ t('dashboard', '"{title} icon"', {title: this.state.widgetTitle || "External Portal"}) }}
+							{{ t('dashboard', '"{title} icon"', {title: state.widgetTitle || "External Portal"}) }}
 						</span>
 					</div>
 					<div class="panel--content">
-						<Dashboard ref="dashboard" :title="this.state.widgetTitle" />
+						<Dashboard ref="dashboard" :title="state.widgetTitle" />
 					</div>
 				</div>
 			</div>

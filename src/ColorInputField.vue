@@ -15,8 +15,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 </template>
 
 <script>
-/*  eslint-disable-next-line n/no-missing-import */ // causes an error although works in real world - not quite sure why
-import NcInputField from '@nextcloud/vue/dist/Components/NcInputField'
+import NcInputField from '@nextcloud/vue/dist/Components/NcInputField.js'
 
 export default {
 	name: 'ColorInputField',
