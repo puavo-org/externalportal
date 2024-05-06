@@ -1,7 +1,7 @@
 {
   "name": "externalportal",
   "description": "Dashboard Portal Widget",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "Tuomas Nurmi <dev@opinsys.fi>",
   "contributors": [],
   "bugs": {
@@ -20,28 +20,27 @@
     "stylelint:fix": "stylelint css/*.css css/*.scss src/**/*.scss src/**/*.vue --fix"
   },
   "dependencies": {
-    "@nextcloud/axios": "^1.10.0",
-    "@nextcloud/dialogs": "^3.1.4",
-    "@nextcloud/initial-state": "^1.2.1",
-    "@nextcloud/l10n": "^1.4.1",
-    "@nextcloud/router": "^2.0.0",
-    "@nextcloud/vue": "^7.11.6",
-    "@nextcloud/vue-dashboard": "^2.0.0",
-    "vue": "^2.7.0",
-    "webpack": ">=5.76.0"
+    "@nextcloud/axios": "^2.5.0",
+    "@nextcloud/dialogs": "^5.3.1",
+    "@nextcloud/initial-state": "^2.2.0",
+    "@nextcloud/l10n": "^3.0.1",
+    "@nextcloud/router": "^3.0.1",
+    "@nextcloud/vue": "^8.11.2",
+    "vue": "^2.7.16",
+    "webpack": "^5.91.0"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
   ],
   "engines": {
     "node": "^16.0.0",
-    "npm": "^7.0.0 || ^8.0.0"
+    "npm": "^9.0.0"
   },
   "devDependencies": {
-    "@nextcloud/babel-config": "^1.0.0",
-    "@nextcloud/browserslist-config": "^2.2.0",
-    "@nextcloud/eslint-config": "^8.0.0",
-    "@nextcloud/stylelint-config": "^2.1.2",
-    "@nextcloud/webpack-vue-config": "^5.2.1"
+    "@nextcloud/babel-config": "^1.1.1",
+    "@nextcloud/browserslist-config": "^3.0.1",
+    "@nextcloud/eslint-config": "^8.3.0",
+    "@nextcloud/stylelint-config": "^3.0.0",
+    "@nextcloud/webpack-vue-config": "^6.0.1"
   }
 }

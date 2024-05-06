@@ -4,6 +4,12 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal changelog
+## [1.3.0] - 2024-05-06
+### Added
+- Bump supported Nextcloud versions.
+### Fixed
+- Update dependencies to fix some security issues.
+
 ## [1.2.0] - 2023-06-03
 ### Added
 - Add preview to Admin Settings page.
