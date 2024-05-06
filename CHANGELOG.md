@@ -10,6 +10,7 @@ SPDX-License-Identifier: CC0-1.0
 ### Fixed
 - Update dependencies to fix some security issues.
 - Fix some lint warnings
+- Try to ensure "Files" gets proper translation on NC >= 29
 
 ## [1.2.0] - 2023-06-03
 ### Added

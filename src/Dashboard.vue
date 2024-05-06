@@ -51,7 +51,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
-import { translate as t } from '@nextcloud/l10n'
+import { t, loadTranslations } from '@nextcloud/l10n'
 
 export default {
 	name: 'Dashboard',
@@ -87,6 +87,7 @@ export default {
 		},
 	},
 	beforeMount() {
+		loadTranslations('files')
 		this.getConfig()
 		this.getContent()
 	},
@@ -148,6 +149,7 @@ export default {
 			document.getElementById('external-portal-widget').parentNode.parentNode.style.width = '320px'
 			this.content = []
 			this.number = 0
+			await loadTranslations('files')
 			await this.getConfig()
 			await this.getContent()
 		},
