@@ -27,7 +27,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 			<div v-for="item in content"
 				:key="item.id"
 				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6, maxsized: maxSize, externalsite: true}">
-				<a v-bind="{ target: item.sameWindow ? '' : '_blank' }" :href="item.url">
+				<a v-bind="{ target: item.sameWindow ? '_self' : '_blank' }" :href="item.sameWindow ? 'apps/external/' + item.id : item.url">
 					<div v-if="themingColor !== undefined"
 						class="linkitem masked-icon"
 						:style="`-webkit-mask-image: url(${item.icon}); mask-image: url(${item.icon}); backgroundColor: ${themingColor}`" />
