@@ -27,7 +27,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 			<div v-for="item in content"
 				:key="item.id"
 				:class="{ smaller: content.length>4 && content.length < 7, smallest: content.length>6, maxsized: maxSize, externalsite: true}">
-				<a v-bind="{ target: item.sameWindow ? '' : '_blank' }" :href="item.url">
+				<a v-bind="{ target: item.sameWindow ? '_self' : '_blank' }" :href="(item.sameWindow && item.type !== 'files') ? item.externalurl : item.url">
 					<div v-if="themingColor !== undefined"
 						class="linkitem masked-icon"
 						:style="`-webkit-mask-image: url(${item.icon}); mask-image: url(${item.icon}); backgroundColor: ${themingColor}`" />
@@ -117,6 +117,7 @@ export default {
 					url: filesUrl,
 					name: filesLabel,
 					sameWindow: true,
+					type: 'files',
 				}].concat(this.content)
 				this.number = this.content.length
 			}
@@ -132,9 +133,17 @@ export default {
 			}
 			try {
 				const response = await axios.get(url)
-				this.content = this.content.concat(response.data.ocs.data)
+				const updatedResponse = {
+                  data: response.data.ocs.data.map(item => ({
+                    ...item,
+                    sameWindow: !Boolean(item.redirect), // Inverse of redirect
+					externalurl: generateUrl('/apps/external/') + item.id
+                  }))
+                };
+				this.content = this.content.concat(updatedResponse.data)
 				this.number = this.content.length
 				console.debug('"' + JSON.stringify(response.data) + '"')
+				console.debug('"' + JSON.stringify(updatedResponse.data) + '"')
 				console.debug('"' + JSON.stringify(this.content) + '"')
 			} catch (error) {
 				console.debug(error)
