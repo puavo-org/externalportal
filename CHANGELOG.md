@@ -4,6 +4,12 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal changelog
+## [1.3.2] - 2025-10-24
+### Fixed
+- Shorten filenames in the js directory to fix issue 9.
+- Update dependencies.
+- New certificate for signing releases.
+
 ## [1.3.1] - 2024-07-31
 ### Added
 - Bump supported Nextcloud versions.

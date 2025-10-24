@@ -9,9 +9,9 @@
     <name>External Portal</name>
     <summary>Dashboard Portal Widget</summary>
     <description><![CDATA[A dashboard widget that displays the content from the External sites app on Dashboard in a nice and inviting form.]]></description>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <licence>agpl</licence>
-    <author mail="dev@opinsys.fi" homepage="https://puavo.org">Tuomas Nurmi</author>
+    <author mail="dev@opinsys.fi" homepage="https://puavo.org">Opinsys Oy Development Team</author>
     <namespace>ExternalPortal</namespace>
     <category>dashboard</category>
     <bugs>https://github.com/puavo-org/externalportal/issues</bugs>
