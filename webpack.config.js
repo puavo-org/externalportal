@@ -9,4 +9,18 @@ webpackConfig.entry = {
   admin: path.join(__dirname, 'src', 'adminSettings.js'),
 }
 
+// Shorten output file names:
+webpackConfig.output = {
+  ...webpackConfig.output,
+  filename: 'externalportal-[name].js', // e.g. externalportal-dashboard.js
+  chunkFilename: 'import_[id].[contenthash:8].js', // used for dynamic imports
+  clean: true, // cleans old files
+}
+
+webpackConfig.optimization = {
+  ...webpackConfig.optimization,
+  chunkIds: 'deterministic',
+  moduleIds: 'deterministic',
+}
+
 module.exports = webpackConfig
