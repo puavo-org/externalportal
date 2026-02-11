@@ -7,7 +7,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
       - stable*
 
 env:
@@ -21,12 +21,12 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['8.0']
-        server-versions: ['master']
+        php-versions: ['8.1', '8.2', '8.3']
+        server-versions: ['stable31', 'stable32']
 
     services:
       postgres:
-        image: postgres
+        image: postgres:16
         ports:
           - 4444:5432/tcp
         env:
@@ -42,14 +42,14 @@ jobs:
           echo "APP_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
 
       - name: Checkout server
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
           repository: nextcloud/server
           ref: ${{ matrix.server-versions }}
 
       - name: Checkout app
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: apps/${{ env.APP_NAME }}
 
@@ -75,7 +75,7 @@ jobs:
 
       - name: Check PHPUnit config file existence
         id: check_phpunit
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v3
         with:
           files: apps/${{ env.APP_NAME }}/${{ env.PHPUNIT_CONFIG }}
 
@@ -87,7 +87,7 @@ jobs:
 
       - name: Check PHPUnit integration config file existence
         id: check_integration
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v3
         with:
           files: apps/${{ env.APP_NAME }}/${{ env.PHPUNIT_INTEGRATION_CONFIG }}
 
@@ -113,4 +113,3 @@ jobs:
     steps:
       - name: Summary status
         run: if ${{ needs.phpunit-pgsql.result != 'success' }}; then exit 1; fi
-

@@ -27,19 +27,7 @@
 
 namespace OCA\ExternalPortal\Controller;
 
-use OCP\Files\IAppData;
-use OCP\AppFramework\Http\DataDisplayResponse;
-
 use OCP\IConfig;
-use OCP\IServerContainer;
-
-use OCP\AppFramework\Http;
-use OCP\AppFramework\Http\RedirectResponse;
-
-use OCP\Files\IRootFolder;
-use OCP\IUserManager;
-use OCP\Files\FileInfo;
-
 
 use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
@@ -49,21 +37,14 @@ use OCA\ExternalPortal\AppInfo\Application;
 
 class ConfigController extends Controller
 {
-    private $config;
-    private $dbtype;
+    private IConfig $config;
 
     public function __construct(
-        $AppName,
+        string $AppName,
         IRequest $request,
-        IServerContainer $serverContainer,
-        IConfig $config,
-        IAppData $appData,
-        ?string $userId
+        IConfig $config
     ) {
         parent::__construct($AppName, $request);
-        $this->userId = $userId;
-        $this->appData = $appData;
-        $this->serverContainer = $serverContainer;
         $this->config = $config;
     }
 
@@ -81,10 +62,10 @@ class ConfigController extends Controller
     public function getConfig(): DataResponse
     {
 
-        $extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
-        $maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
-        $showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
-        $iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
+        $extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', '');
+        $maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', '');
+        $showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', '');
+        $iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', 'DEFAULT');
         $customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
         return new DataResponse([
             'extraWide' => $extraWide,

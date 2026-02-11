@@ -67,8 +67,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 				</select>
 			</div>
 			<div v-if="state.iconColorMode === 'CUSTOM'" class="setting">
-				<ColorInputField label="Custom icon color"
-					:value.sync="state.customIconColor" />
+				<ColorInputField v-model:value="state.customIconColor"
+					label="Custom icon color" />
 			</div>
 			<div class="setting">
 				<button color="primary" @click="saveSettings">
@@ -103,6 +103,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <script>
 import { loadState } from '@nextcloud/initial-state'
+import { translate as t } from '@nextcloud/l10n'
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import { showSuccess, showError } from '@nextcloud/dialogs'
@@ -123,6 +124,7 @@ export default {
 		}
 	},
 	methods: {
+		t,
 		async saveSettings() {
 			this.saving = true
 			const values = {

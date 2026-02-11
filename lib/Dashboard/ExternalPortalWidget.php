@@ -38,6 +38,7 @@ use OCP\IL10N;
 class ExternalPortalWidget implements IWidget
 {
     private IL10N $l10n;
+    private IConfig $config;
 
     public function __construct(
         IL10N $l10n,

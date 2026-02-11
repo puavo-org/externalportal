@@ -12,7 +12,6 @@ on:
   push:
     branches:
       - main
-      - master
       - stable*
 
 permissions:
@@ -26,12 +25,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
+        uses: actions/checkout@v4
 
-      - name: Set up php ${{ matrix.php-versions }}
+      - name: Set up php
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1"
+          php-version: "8.2"
           coverage: none
 
       - name: Install dependencies
@@ -39,4 +38,3 @@ jobs:
 
       - name: Lint
         run: composer run cs:check || ( echo 'Please run `composer run cs:fix` to format your code' && exit 1 )
-

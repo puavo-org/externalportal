@@ -3,60 +3,52 @@ SPDX-FileCopyrightText: Tobias Knöppler 6317548+thecalcaholic@users.noreply.git
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcInputField v-bind="{...$attrs, ...$props }"
-		ref="inputField"
-		type="color"
-		:show-trailing-button="false"
-		v-on="$listeners"
-		@input="handleInput">
-		<!-- Default slot for the leading icon -->
-		<slot />
-	</NcInputField>
+	<div class="color-input-field">
+		<label v-if="label" :for="inputId">{{ label }}</label>
+		<input :id="inputId"
+			ref="inputField"
+			type="color"
+			:value="value"
+			@input="$emit('update:value', $event.target.value)">
+	</div>
 </template>
 
 <script>
-import NcInputField from '@nextcloud/vue/dist/Components/NcInputField.js'
-
 export default {
 	name: 'ColorInputField',
-	components: {
-		NcInputField,
+	props: {
+		value: {
+			type: String,
+			default: '',
+		},
+		label: {
+			type: String,
+			default: '',
+		},
 	},
-	// Allow forwarding all attributes
-	inheritAttrs: false,
-
-	props: { ...NcInputField.props },
 	emits: [
 		'update:value',
 	],
+	computed: {
+		inputId() {
+			return 'color-input-' + Math.random().toString(36).slice(2, 9)
+		},
+	},
 	methods: {
-		/**
-		 * Focus the input element
-		 *
-		 * @public
-		 */
 		focus() {
 			this.$refs.inputField.focus()
 		},
-
-		/**
-		 * Select all the text in the input
-		 *
-		 * @public
-		 */
 		select() {
 			this.$refs.inputField.select()
-		},
-
-		handleInput(event) {
-			/**
-			 * Triggers when the value inside the color field is
-			 * updated.
-			 *
-			 * @property {string} The new value
-			 */
-			this.$emit('update:value', event.target.value)
 		},
 	},
 }
 </script>
+
+<style scoped>
+.color-input-field {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+</style>

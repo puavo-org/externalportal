@@ -4,6 +4,18 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # External Portal changelog
+## [2.0.0] - 2026-02-11
+### Changed
+- Migrate from Vue 2 to Vue 3.
+- Upgrade @nextcloud/vue from v8 to v9.
+- Upgrade all @nextcloud/* dependencies to latest versions.
+- Require Node.js 20+.
+- Supported Nextcloud versions: 31-32.
+### Fixed
+- Clean up unused imports and dependencies in ConfigController.
+- Add missing property declaration for IInitialState in Admin settings.
+- Fix IConfig::getAppValue() default parameters to use string values.
+
 ## [1.3.2] - 2025-10-24
 ### Fixed
 - Shorten filenames in the js directory to fix issue 9.

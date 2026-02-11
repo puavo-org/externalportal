@@ -77,10 +77,10 @@ export default {
 		themingColor() {
 			if (this.iconColorMode === 'CUSTOM') {
 				return this.customIconColor
-			} else if (!this.$OCA.Theming || this.iconColorMode === 'PRIMARY') {
+			} else if (!OCA.Theming || this.iconColorMode === 'PRIMARY') {
 				return 'var(--color-main-text)'
 			} else if (this.iconColorMode === 'THEMING') {
-				return this.$OCA.Theming.color
+				return OCA.Theming.color
 			} else {
 				return undefined
 			}

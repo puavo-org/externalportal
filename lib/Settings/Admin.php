@@ -44,6 +44,9 @@ class Admin implements ISettings
     /** @var IL10N */
     private $l;
 
+    /** @var IInitialState */
+    private $initialStateService;
+
     /**
      * Admin constructor.
      *
@@ -66,10 +69,10 @@ class Admin implements ISettings
     public function getForm(): TemplateResponse
     {
         $widgetTitle = $this->config->getAppValue(Application::APP_ID, 'widgetTitle', '#000000');
-        $extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', false);
-        $maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', false);
-        $showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', false);
-        $iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', "DEFAULT");
+        $extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', '');
+        $maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', '');
+        $showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', '');
+        $iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', 'DEFAULT');
         $customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
 
         $adminConfig = [
