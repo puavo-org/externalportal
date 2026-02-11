@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2022 Opinsys Oy <dev@opinsys.fi>
+ * @copyright Copyright (c) 2026 Opinsys Oy <dev@opinsys.fi>
  *
  * @author Tuomas Nurmi <tuomas.nurmi@opinsys.fi>
  *
@@ -37,42 +37,57 @@ use OCA\ExternalPortal\AppInfo\Application;
 
 class ConfigController extends Controller
 {
-    private IConfig $config;
+  private IConfig $config;
 
-    public function __construct(
-        string $AppName,
-        IRequest $request,
-        IConfig $config
-    ) {
-        parent::__construct($AppName, $request);
-        $this->config = $config;
+  public function __construct(
+    string $AppName,
+    IRequest $request,
+    IConfig $config,
+  ) {
+    parent::__construct($AppName, $request);
+    $this->config = $config;
+  }
+
+  public function setAdminConfig(array $values): DataResponse
+  {
+    foreach ($values as $key => $value) {
+      $this->config->setAppValue(Application::APP_ID, $key, $value);
     }
+    return new DataResponse(1);
+  }
 
-    public function setAdminConfig(array $values): DataResponse
-    {
-        foreach ($values as $key => $value) {
-            $this->config->setAppValue(Application::APP_ID, $key, $value);
-        }
-        return new DataResponse(1);
-    }
-
-    /**
-     * @NoAdminRequired
-     */
-    public function getConfig(): DataResponse
-    {
-
-        $extraWide = $this->config->getAppValue(Application::APP_ID, 'extraWide', '');
-        $maxSize = $this->config->getAppValue(Application::APP_ID, 'maxSize', '');
-        $showFiles = $this->config->getAppValue(Application::APP_ID, 'showFiles', '');
-        $iconColorMode = $this->config->getAppValue(Application::APP_ID, 'iconColorMode', 'DEFAULT');
-        $customIconColor = $this->config->getAppValue(Application::APP_ID, 'customIconColor', '');
-        return new DataResponse([
-            'extraWide' => $extraWide,
-            'showFiles' => $showFiles,
-            'maxSize' => $maxSize,
-            'iconColorMode' => $iconColorMode,
-            'customIconColor' => $customIconColor]);
-    }
-
+  /**
+   * @NoAdminRequired
+   */
+  public function getConfig(): DataResponse
+  {
+    $extraWide = $this->config->getAppValue(
+      Application::APP_ID,
+      "extraWide",
+      "",
+    );
+    $maxSize = $this->config->getAppValue(Application::APP_ID, "maxSize", "");
+    $showFiles = $this->config->getAppValue(
+      Application::APP_ID,
+      "showFiles",
+      "",
+    );
+    $iconColorMode = $this->config->getAppValue(
+      Application::APP_ID,
+      "iconColorMode",
+      "DEFAULT",
+    );
+    $customIconColor = $this->config->getAppValue(
+      Application::APP_ID,
+      "customIconColor",
+      "",
+    );
+    return new DataResponse([
+      "extraWide" => $extraWide,
+      "showFiles" => $showFiles,
+      "maxSize" => $maxSize,
+      "iconColorMode" => $iconColorMode,
+      "customIconColor" => $customIconColor,
+    ]);
+  }
 }

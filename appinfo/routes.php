@@ -1,8 +1,9 @@
 <?php
+// Copyright (C) 2026 Opinsys Oy <dev@opinsys.fi>
+// SPDX-FileCopyrightText: Opinsys Oy <dev@opinsys.fi>
+// SPDX-License-Identifier: AGPL-3.0-or-later
 
 declare(strict_types=1);
-// SPDX-FileCopyrightText: Tuomas Nurmi <dev@opinsys.fi>
-// SPDX-License-Identifier: AGPL-3.0-or-later
 
 /**
  * Create your routes in here. The name is the lowercase name of the controller
@@ -13,10 +14,13 @@ declare(strict_types=1);
  * it's instantiated in there
  */
 return [
-    'resources' => [
+  "resources" => [],
+  "routes" => [
+    [
+      "name" => "config#setAdminConfig",
+      "url" => "/admin-config",
+      "verb" => "PUT",
     ],
-    'routes' => [
-        ['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
-        ['name' => 'config#getConfig', 'url' => '/config', 'verb' => 'GET'],
-    ]
+    ["name" => "config#getConfig", "url" => "/config", "verb" => "GET"],
+  ],
 ];

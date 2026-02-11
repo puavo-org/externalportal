@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (c) 2022 Opinsys Oy <dev@opinsys.fi>
+ * @copyright Copyright (c) 2026 Opinsys Oy <dev@opinsys.fi>
  *
  * @author Tuomas Nurmi <tuomas.nurmi@opinsys.fi>
  *
@@ -34,32 +34,32 @@ use OCP\Settings\IIconSection;
 
 class Section implements IIconSection
 {
-    private IL10N $l;
-    private IURLGenerator $url;
+  private IL10N $l;
+  private IURLGenerator $url;
 
-    public function __construct(IURLGenerator $url, IL10N $l)
-    {
-        $this->url = $url;
-        $this->l = $l;
-    }
+  public function __construct(IURLGenerator $url, IL10N $l)
+  {
+    $this->url = $url;
+    $this->l = $l;
+  }
 
-    public function getIcon(): string
-    {
-        return $this->url->imagePath('externalportal', 'externalportal-dark.svg');
-    }
+  public function getIcon(): string
+  {
+    return $this->url->imagePath("externalportal", "externalportal-dark.svg");
+  }
 
-    public function getID(): string
-    {
-        return 'externalportal';
-    }
+  public function getID(): string
+  {
+    return "externalportal";
+  }
 
-    public function getName(): string
-    {
-        return $this->l->t('External portal');
-    }
+  public function getName(): string
+  {
+    return $this->l->t("External portal");
+  }
 
-    public function getPriority(): int
-    {
-        return 56; // externalsites is 55
-    }
+  public function getPriority(): int
+  {
+    return 56; // externalsites is 55
+  }
 }
