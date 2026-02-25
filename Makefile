@@ -2,7 +2,7 @@ app_name=externalportal
 build_dir=$(CURDIR)/build
 sign_dir=$(build_dir)/sign
 cert_dir=$(HOME)/.nextcloud/certificates
-docker_container=master_nextcloud_1
+docker_container=master-nextcloud-1
 shared_dir=$(HOME)/dev/nextcloud/nextcloud-docker-dev/data/shared
 
 all: build

@@ -20,6 +20,14 @@ npm install
 npm run build
 ```
 
+The app can also be built with
+
+```bash
+make
+```
+
+which creates a package `build/externalportal.tar.gz` suitable for a local installation in the `apps` directory on a Nextcloud instance.
+
 For development with file watching:
 
 ```bash
@@ -37,6 +45,8 @@ composer psalm
 
 ## Releasing a new version
 
+This section is only for the official app maintainers.
+
 1. Update the version in `appinfo/info.xml` and `package.json`
 2. Update `CHANGELOG.md`
 3. Commit and tag the release:
@@ -46,13 +56,13 @@ composer psalm
    git tag vx.x.x
    git push && git push --tags
    ```
-4. Build and sign the appstore package:
+4. Set the `shared_dir` variable in the Makefile to match your development enviroment 
+5. Build and sign the appstore package:
    ```bash
    make sign
    ```
    This uses `docker exec` to run `occ integrity:sign-app` inside the
-   `master_nextcloud_1` container. Signing certificates must be placed in
+   `master-nextcloud-1` container. Signing certificates must be placed in
    `~/.nextcloud/certificates/` (`externalportal.key` and `externalportal.crt`).
 
-   To build without signing, run `make` instead.
-5. Upload `build/externalportal.tar.gz` to the [Nextcloud App Store](https://apps.nextcloud.com/developer/apps/releases/new)
+6. Upload `build/externalportal.tar.gz` to the [Nextcloud App Store](https://apps.nextcloud.com/developer/apps/releases/new)
