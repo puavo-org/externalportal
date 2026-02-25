@@ -13,3 +13,5 @@
 /css/
 .nvmrc
 translationtool.phar
+
+/build/

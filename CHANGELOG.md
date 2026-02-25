@@ -1,10 +1,13 @@
 # External Portal changelog
-## [2.0.0] - 2026-02-17
+
+## [2.0.0] - 2026-02-25
 ### Changed
-- Updated to latest Nextcloud app template.
-- Require Node.js 20+.
-- Supported Nextcloud versions: 31-32.
-- Added translations for finnish and german.
+- Updated to latest Nextcloud app template
+- Require Node.js 20+
+- Supported Nextcloud versions: 31-32
+- Added translations for finnish and german
+### Fixed
+- Widget link logic (#15, ported from #8)
 
 ## [1.3.2] - 2025-10-24
 ### Fixed

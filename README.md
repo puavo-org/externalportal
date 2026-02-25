@@ -34,3 +34,25 @@ npm run stylelint
 composer cs:check
 composer psalm
 ```
+
+## Releasing a new version
+
+1. Update the version in `appinfo/info.xml` and `package.json`
+2. Update `CHANGELOG.md`
+3. Commit and tag the release:
+   ```bash
+   git add appinfo/info.xml package.json CHANGELOG.md
+   git commit -m "vx.x.x"
+   git tag vx.x.x
+   git push && git push --tags
+   ```
+4. Build and sign the appstore package:
+   ```bash
+   make sign
+   ```
+   This uses `docker exec` to run `occ integrity:sign-app` inside the
+   `master_nextcloud_1` container. Signing certificates must be placed in
+   `~/.nextcloud/certificates/` (`externalportal.key` and `externalportal.crt`).
+
+   To build without signing, run `make` instead.
+5. Upload `build/externalportal.tar.gz` to the [Nextcloud App Store](https://apps.nextcloud.com/developer/apps/releases/new)
