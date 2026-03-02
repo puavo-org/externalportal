@@ -31,7 +31,7 @@
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
-import { t, loadTranslations } from '@nextcloud/l10n'
+import { t } from '@nextcloud/l10n'
 
 interface ExternalSite {
 	id?: number
@@ -76,7 +76,6 @@ export default {
 		},
 	},
 	async mounted() {
-		await loadTranslations('files')
 		await this.getConfig()
 		await this.getContent()
 	},
@@ -141,7 +140,6 @@ export default {
 			this.loading = true
 			this.content = []
 			this.updateExtraWide()
-			await loadTranslations('files')
 			await this.getConfig()
 			await this.getContent()
 		},
