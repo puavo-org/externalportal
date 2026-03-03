@@ -1,5 +1,11 @@
 # External Portal changelog
 
+## [2.1.0] - 2026-03-03
+### Changed
+- Compatibility with Nextcloud 33.
+### Fixed
+- Fix translations loading issue
+
 ## [2.0.0] - 2026-02-25
 ### Changed
 - Updated to latest Nextcloud app template

@@ -5,7 +5,7 @@
     <name>External Portal</name>
     <summary>Dashboard Portal Widget</summary>
     <description><![CDATA[A dashboard widget that displays the content from the External sites app on Dashboard.]]></description>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
     <licence>agpl</licence>
     <author mail="dev@opinsys.fi" homepage="https://puavo.org">Opinsys Oy Development Team</author>
     <namespace>ExternalPortal</namespace>
@@ -13,7 +13,7 @@
     <bugs>https://github.com/puavo-org/externalportal/issues</bugs>
     <screenshot>https://raw.githubusercontent.com/puavo-org/externalportal/main/screenshot.png</screenshot>
     <dependencies>
-        <nextcloud min-version="31" max-version="32"/>
+        <nextcloud min-version="31" max-version="33"/>
     </dependencies>
     <settings>
     <admin>OCA\ExternalPortal\Settings\Admin</admin>
