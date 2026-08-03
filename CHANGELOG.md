@@ -1,5 +1,9 @@
 # External Portal changelog
 
+## [2.2.0] - 2026-08-03
+### Changed
+- Compatibility with Nextcloud 34.
+
 ## [2.1.0] - 2026-03-03
 ### Changed
 - Compatibility with Nextcloud 33.
