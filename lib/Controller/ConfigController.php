@@ -6,6 +6,7 @@ namespace OCA\ExternalPortal\Controller;
 
 use OCA\ExternalPortal\AppInfo\Application;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IAppConfig;
 use OCP\IRequest;
@@ -44,9 +45,7 @@ class ConfigController extends Controller {
 		return new DataResponse(1);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 */
+	#[NoAdminRequired]
 	public function getConfig(): DataResponse {
 		$extraWide = $this->appConfig->getValueString(Application::APP_ID, 'extraWide', '');
 		$maxSize = $this->appConfig->getValueString(Application::APP_ID, 'maxSize', '');
