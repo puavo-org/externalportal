@@ -4,31 +4,31 @@
 			<div class="settings-layout">
 				<div class="settings-form">
 					<NcTextField id="externalportal-widget-title"
-						:model-value="state.widgetTitle"
+						:modelValue="state.widgetTitle"
 						:label="t('externalportal', 'Widget title')"
 						:placeholder="t('externalportal', 'External portal')"
 						:loading="saving && lastChanged === 'widgetTitle'"
 						:success="saved && lastChanged === 'widgetTitle'"
-						@update:model-value="updateField('widgetTitle', String($event))" />
-					<NcCheckboxRadioSwitch :model-value="!!state.extraWide"
+						@update:modelValue="updateField('widgetTitle', String($event))" />
+					<NcCheckboxRadioSwitch :modelValue="!!state.extraWide"
 						type="switch"
-						@update:model-value="updateField('extraWide', $event)">
+						@update:modelValue="updateField('extraWide', $event)">
 						{{ t('externalportal', 'Extra wide') }}
 					</NcCheckboxRadioSwitch>
 					<p class="setting-hint">
 						{{ t('externalportal', 'Expand the widget from 320px to 400px when there are more than 6 links') }}
 					</p>
-					<NcCheckboxRadioSwitch :model-value="!!state.maxSize"
+					<NcCheckboxRadioSwitch :modelValue="!!state.maxSize"
 						type="switch"
-						@update:model-value="updateField('maxSize', $event)">
+						@update:modelValue="updateField('maxSize', $event)">
 						{{ t('externalportal', 'Limit icon size') }}
 					</NcCheckboxRadioSwitch>
 					<p class="setting-hint">
 						{{ t('externalportal', 'Limit each icon to 64x64px to prevent small pixmap icons from being stretched') }}
 					</p>
-					<NcCheckboxRadioSwitch :model-value="!!state.showFiles"
+					<NcCheckboxRadioSwitch :modelValue="!!state.showFiles"
 						type="switch"
-						@update:model-value="updateField('showFiles', $event)">
+						@update:modelValue="updateField('showFiles', $event)">
 						{{ t('externalportal', 'Show Files link') }}
 					</NcCheckboxRadioSwitch>
 					<p class="setting-hint">
@@ -38,7 +38,7 @@
 						:options="iconColorOptions"
 						:reduce="(option: { id: string, label: string }) => option.id"
 						label="label"
-						:input-label="t('externalportal', 'Icon Colors')"
+						:inputLabel="t('externalportal', 'Icon Colors')"
 						@option:selected="lastChanged = 'iconColorMode'" />
 					<div v-if="state.iconColorMode === 'CUSTOM'">
 						<ColorInputField v-model="state.customIconColor"
@@ -75,17 +75,17 @@
 </template>
 
 <script lang="ts">
+import axios from '@nextcloud/axios'
+import { showError } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import { translate as t } from '@nextcloud/l10n'
-import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
-import { showError } from '@nextcloud/dialogs'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import NcSelect from '@nextcloud/vue/components/NcSelect'
 import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
-import Dashboard from './Dashboard.vue'
 import ColorInputField from './ColorInputField.vue'
+import Dashboard from './Dashboard.vue'
 
 interface AdminConfig {
 	widgetTitle: string
@@ -107,6 +107,7 @@ export default {
 		Dashboard,
 		ColorInputField,
 	},
+
 	data() {
 		return {
 			state: loadState<AdminConfig>('externalportal', 'admin-config'),
@@ -123,6 +124,7 @@ export default {
 			],
 		}
 	},
+
 	watch: {
 		state: {
 			deep: true,
@@ -134,12 +136,14 @@ export default {
 			},
 		},
 	},
+
 	methods: {
 		t,
 		updateField(field: string, value: string | boolean) {
 			this.lastChanged = field
 			this.state[field] = value
 		},
+
 		async saveSettings() {
 			this.saving = true
 			this.saved = false
@@ -161,10 +165,8 @@ export default {
 				}, 3000)
 			} catch (e: unknown) {
 				const message = e instanceof Error ? e.message : ''
-				showError(
-					t('externalportal', 'Failed to save external portal options')
-						+ (message ? `: ${message}` : ''),
-				)
+				showError(t('externalportal', 'Failed to save external portal options')
+					+ (message ? `: ${message}` : ''))
 				console.error(e)
 			}
 			this.saving = false
