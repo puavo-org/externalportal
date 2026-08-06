@@ -1,6 +1,9 @@
 <template>
 	<div id="external-portal-widget">
 		<div v-if="loading" class="icon icon-loading" />
+		<div v-else-if="loadError">
+			<span>{{ t('externalportal', 'Could not load external sites.') }}</span>
+		</div>
 		<div v-else-if="content.length > 0" class="external-sites">
 			<div v-for="item in content"
 				:key="item.id"
@@ -46,6 +49,7 @@ export default {
 	data() {
 		return {
 			loading: true,
+			loadError: false,
 			content: [] as ExternalSite[],
 			extraWide: '' as string | boolean,
 			maxSize: '' as string | boolean,
@@ -135,10 +139,12 @@ export default {
 			if (url.endsWith('/')) {
 				url = url.slice(0, -1)
 			}
+			this.loadError = false
 			try {
 				const response = await axios.get(url)
 				this.content = this.content.concat(response.data.ocs.data)
 			} catch (error) {
+				this.loadError = true
 				console.error(error)
 			}
 			this.loading = false
