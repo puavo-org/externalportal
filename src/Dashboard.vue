@@ -30,8 +30,8 @@
 <script lang="ts">
 
 import axios from '@nextcloud/axios'
-import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import { t } from '@nextcloud/l10n'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 
 interface ExternalSite {
 	id?: number
@@ -42,7 +42,7 @@ interface ExternalSite {
 }
 
 export default {
-	name: 'Dashboard',
+	name: 'ExternalPortalDashboard',
 	data() {
 		return {
 			loading: true,
@@ -54,6 +54,7 @@ export default {
 			customIconColor: '',
 		}
 	},
+
 	computed: {
 		themingColor() {
 			if (this.iconColorMode === 'CUSTOM') {
@@ -66,6 +67,7 @@ export default {
 				return undefined
 			}
 		},
+
 		itemClasses() {
 			return {
 				externalsite: true,
@@ -75,27 +77,33 @@ export default {
 			}
 		},
 	},
+
 	async mounted() {
 		await this.getConfig()
 		await this.getContent()
 	},
+
 	methods: {
 		t,
 		updateExtraWide() {
 			const panel = (this.$el as HTMLElement).closest('.panel')
-			if (!panel) return
+			if (!panel) {
+				return
+			}
 			if (this.content.length > 6 && this.extraWide) {
 				panel.classList.add('externalportal--extra-wide')
 			} else {
 				panel.classList.remove('externalportal--extra-wide')
 			}
 		},
+
 		itemHref(item: ExternalSite) {
 			if (!item.redirect && item.id !== undefined) {
 				return generateUrl('/apps/external/{id}/', { id: item.id })
 			}
 			return item.url
 		},
+
 		async getConfig() {
 			const url = generateUrl('/apps/externalportal/config')
 			try {
@@ -136,6 +144,7 @@ export default {
 			this.loading = false
 			this.updateExtraWide()
 		},
+
 		async reload() {
 			this.loading = true
 			this.content = []

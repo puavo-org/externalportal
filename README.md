@@ -8,7 +8,7 @@ This app is not affiliated with the External sites app. Implementing the corresp
 
 - Nextcloud 31 to 34
 - PHP 8.1+
-- Node.js 20+
+- Node.js 24+
 - [External sites](https://apps.nextcloud.com/apps/external) app installed and configured
 
 ## Building the app

@@ -17,23 +17,28 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		label: {
 			type: String,
 			default: '',
 		},
 	},
+
 	emits: [
 		'update:modelValue',
 	],
+
 	data() {
 		return {
 			inputId: 'color-input-' + Math.random().toString(36).slice(2, 9),
 		}
 	},
+
 	methods: {
 		focus() {
 			(this.$refs.inputField as HTMLInputElement).focus()
 		},
+
 		select() {
 			(this.$refs.inputField as HTMLInputElement).select()
 		},
