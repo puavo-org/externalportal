@@ -36,6 +36,13 @@ npm run watch
 
 ## Linting
 
+The PHP tooling lives in `vendor-bin`, so install the Composer dependencies once
+before running it:
+
+```bash
+composer install
+```
+
 ```bash
 npm run lint
 npm run stylelint
@@ -47,17 +54,21 @@ composer psalm
 
 This section is only for the official app maintainers.
 
-1. Update the version in `appinfo/info.xml` and `package.json`
-2. Update `CHANGELOG.md`
-3. Commit and tag the release:
+1. Update the version in `package.json` and `package-lock.json`:
    ```bash
-   git add appinfo/info.xml package.json CHANGELOG.md
+   npm version x.x.x --no-git-tag-version
+   ```
+2. Update the version in `appinfo/info.xml`
+3. Update `CHANGELOG.md`
+4. Commit and tag the release:
+   ```bash
+   git add appinfo/info.xml package.json package-lock.json CHANGELOG.md
    git commit -m "vx.x.x"
    git tag vx.x.x
    git push && git push --tags
    ```
-4. Set the `shared_dir` variable in the Makefile to match your development enviroment 
-5. Build and sign the appstore package:
+5. Set the `shared_dir` variable in the Makefile to match your development environment
+6. Build and sign the appstore package:
    ```bash
    make sign
    ```
@@ -65,4 +76,4 @@ This section is only for the official app maintainers.
    `master-nextcloud-1` container. Signing certificates must be placed in
    `~/.nextcloud/certificates/` (`externalportal.key` and `externalportal.crt`).
 
-6. Upload `build/externalportal.tar.gz` to the [Nextcloud App Store](https://apps.nextcloud.com/developer/apps/releases/new)
+7. Upload `build/externalportal.tar.gz` to the [Nextcloud App Store](https://apps.nextcloud.com/developer/apps/releases/new)
