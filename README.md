@@ -67,13 +67,15 @@ This section is only for the official app maintainers.
    git tag vx.x.x
    git push && git push --tags
    ```
-5. Set the `shared_dir` variable in the Makefile to match your development environment
+5. Set the `shared_dir` and `docker_container` variables in the Makefile to match
+   your development environment
 6. Build and sign the appstore package:
    ```bash
    make sign
    ```
-   This uses `docker exec` to run `occ integrity:sign-app` inside the
-   `master-nextcloud-1` container. Signing certificates must be placed in
-   `~/.nextcloud/certificates/` (`externalportal.key` and `externalportal.crt`).
+   This uses `docker exec` to run `occ integrity:sign-app` inside the container
+   named by `docker_container`, which must be running. Signing certificates must
+   be placed in `~/.nextcloud/certificates/` (`externalportal.key` and
+   `externalportal.crt`).
 
 7. Upload `build/externalportal.tar.gz` to the [Nextcloud App Store](https://apps.nextcloud.com/developer/apps/releases/new)
