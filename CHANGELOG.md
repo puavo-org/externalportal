@@ -8,6 +8,7 @@
 - Error toasts are now shown at the bottom of the page, following the reworked toast notifications in @nextcloud/dialogs 7.5.0.
 - Update development dependencies, including @vue/tsconfig, rector/rector and the composer development tooling.
 ### Fixed
+- The dashboard widget now shows an error message when loading the external sites fails, instead of appearing empty.
 - Update dompurify to 3.4.14, fixing an XSS issue (GHSA-55q2-fjhq-7xh7) in the bundled HTML sanitizer.
 
 ## [2.1.0] - 2026-03-03
