@@ -1,9 +1,14 @@
 # External Portal changelog
 
-## [2.2.0] - 2026-08-03
+## [2.2.0] - 2026-09-02
 ### Changed
 - Compatibility with Nextcloud 34.
 - Supported Nextcloud versions: 32-34. Nextcloud 31 is no longer supported.
+- Update runtime dependencies: @nextcloud/dialogs to 7.5.0 and @nextcloud/vue to 9.10.0.
+- Error toasts are now shown at the bottom of the page, following the reworked toast notifications in @nextcloud/dialogs 7.5.0.
+- Update development dependencies, including @vue/tsconfig, rector/rector and the composer development tooling.
+### Fixed
+- Update dompurify to 3.4.14, fixing an XSS issue (GHSA-55q2-fjhq-7xh7) in the bundled HTML sanitizer.
 
 ## [2.1.0] - 2026-03-03
 ### Changed
