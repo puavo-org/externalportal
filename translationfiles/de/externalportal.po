@@ -33,7 +33,7 @@ msgstr "Dashboard-Portal-Widget"
 
 #: appinfo/info.xml
 msgid "A dashboard widget that displays the content from the External sites app on Dashboard."
-msgstr "Ein Dashboard-Widget, das die Inhalte der App „Externe Seiten" auf dem Dashboard anzeigt."
+msgstr "Ein Dashboard-Widget, das die Inhalte der App „Externe Seiten“ auf dem Dashboard anzeigt."
 
 #: src/AdminSettings.vue:3
 msgid "External portal settings"
