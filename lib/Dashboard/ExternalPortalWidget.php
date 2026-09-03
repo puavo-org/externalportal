@@ -66,5 +66,17 @@ class ExternalPortalWidget implements IWidget {
 	public function load(): void {
 		\OCP\Util::addScript('externalportal', 'externalportal-dashboard');
 		\OCP\Util::addStyle('externalportal', 'externalportal-dashboard');
+
+		// The widget labels the optional shortcut with the Files app's own
+		// translation of its name, but that catalog is not loaded on the
+		// dashboard by default.
+		$showFiles = $this->appConfig->getValueString(
+			Application::APP_ID,
+			'showFiles',
+			'',
+		);
+		if ($showFiles !== '') {
+			\OCP\Util::addTranslations('files');
+		}
 	}
 }

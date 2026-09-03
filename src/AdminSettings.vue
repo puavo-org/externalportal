@@ -38,7 +38,7 @@
 						:options="iconColorOptions"
 						:reduce="(option: { id: string, label: string }) => option.id"
 						label="label"
-						:inputLabel="t('externalportal', 'Icon Colors')"
+						:inputLabel="t('externalportal', 'Icon colors')"
 						@option:selected="lastChanged = 'iconColorMode'" />
 					<div v-if="state.iconColorMode === 'CUSTOM'">
 						<ColorInputField v-model="state.customIconColor"
@@ -54,13 +54,12 @@
 							<div class="panel--header">
 								<h2>
 									<div aria-labelledby="panel--header--icon--description"
-										aria-hidden="true"
 										class="icon-externalportal"
 										role="img" />
-									{{ state.widgetTitle || t('externalportal', 'External portal') }}
+									{{ previewTitle }}
 								</h2>
 								<span id="panel--header--icon--description" class="hidden-visually">
-									{{ t('dashboard', '"{title} icon"', {title: state.widgetTitle || t('externalportal', 'External portal')}) }}
+									{{ previewIconLabel }}
 								</span>
 							</div>
 							<div class="panel--content">
@@ -123,6 +122,16 @@ export default {
 				{ id: 'CUSTOM', label: t('externalportal', 'Use custom color') },
 			],
 		}
+	},
+
+	computed: {
+		previewTitle(): string {
+			return this.state.widgetTitle || t('externalportal', 'External portal')
+		},
+
+		previewIconLabel(): string {
+			return t('externalportal', '{title} icon', { title: this.previewTitle })
+		},
 	},
 
 	watch: {
