@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: externalportal\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-17 12:28+0200\n"
+"Report-Msgid-Bugs-To: translations\\@example.com\n"
+"POT-Creation-Date: 2026-09-04 06:01+0000\n"
 "PO-Revision-Date: 2026-02-17 12:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -15,94 +15,132 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANSLATORS src/AdminSettings.vue:9
 #: lib/Dashboard/ExternalPortalWidget.php:38
 #: lib/Settings/Section.php:30
-#: src/AdminSettings.vue:9
-#: src/AdminSettings.vue:60
-#: src/AdminSettings.vue:63
+#: specialVueFakeDummyForL10nScript.js:54
+#: specialVueFakeDummyForL10nScript.js:117
 msgid "External portal"
 msgstr "Ulkoiset sivustot portaali"
 
-#: appinfo/info.xml
+#: specialAppInfoFakeDummyForL10nScript.php:2
 msgid "External Portal"
 msgstr "Ulkoiset sivustot portaali"
 
-#: appinfo/info.xml
+#: specialAppInfoFakeDummyForL10nScript.php:3
 msgid "Dashboard Portal Widget"
 msgstr "Koontinäytön ulkoiset sivustot piensovellus"
 
-#: appinfo/info.xml
-msgid "A dashboard widget that displays the content from the External sites app on Dashboard."
-msgstr "Koontinäytön piensovellus, joka näyttää ulkoiset sivustot -sovelluksen sisällön koontinäytöllä."
+#: specialAppInfoFakeDummyForL10nScript.php:4
+msgid ""
+"A dashboard widget that displays the content from the External sites app on "
+"Dashboard."
+msgstr ""
+"Koontinäytön piensovellus, joka näyttää ulkoiset sivustot -sovelluksen "
+"sisällön koontinäytöllä."
 
-#: src/AdminSettings.vue:3
-msgid "External portal settings"
-msgstr "Portaalin asetukset"
-
-#: src/AdminSettings.vue:8
-msgid "Widget title"
-msgstr "Piensovelluksen otsikko"
-
-#: src/AdminSettings.vue:16
-msgid "Extra wide"
-msgstr "Erittäin leveä"
-
-#: src/AdminSettings.vue:19
-msgid "Expand the widget from 320px to 400px when there are more than 6 links"
-msgstr "Laajenna piensovellus 320 pikselistä 400 pikseliin, kun linkkejä on enemmän kuin 6"
-
-#: src/AdminSettings.vue:24
-msgid "Limit icon size"
-msgstr "Rajoita kuvakkeen kokoa"
-
-#: src/AdminSettings.vue:27
-msgid "Limit each icon to 64x64px to prevent small pixmap icons from being stretched"
-msgstr "Rajoita kunkin kuvakkeen koko 64x64 pikseliin, jotta pienet pikselikuvakkeet eivät venyisi"
-
-#: src/AdminSettings.vue:32
-msgid "Show Files link"
-msgstr "Näytä tiedostot-linkki"
-
-#: src/AdminSettings.vue:35
-msgid "Add a shortcut to the Files app as the first item in the widget"
-msgstr "Lisää pikakuvake tiedostot-sovellukseen piensovelluksen ensimmäiseksi kohteeksi"
-
-#: src/AdminSettings.vue:41
-msgid "Icon Colors"
-msgstr "Kuvakkeiden värit"
-
-#: src/AdminSettings.vue:45
-msgid "Custom icon color"
-msgstr "Mukautettu kuvakeväri"
-
-#: src/AdminSettings.vue:50
-msgid "Preview"
-msgstr "Esikatselu"
-
-#: src/AdminSettings.vue:63
-msgid "\"{title} icon\""
-msgstr "\"{title}-kuvake\""
-
-#: src/AdminSettings.vue:107
+#: specialVueFakeDummyForL10nScript.js:44
 msgid "Use theme color"
 msgstr "Käytä teeman väriä"
 
-#: src/AdminSettings.vue:108
+#: specialVueFakeDummyForL10nScript.js:45
 msgid "Use text color"
 msgstr "Käytä tekstin väriä"
 
-#: src/AdminSettings.vue:109
+#: specialVueFakeDummyForL10nScript.js:46
 msgid "Use icons as-is"
 msgstr "Käytä kuvakkeita sellaisinaan"
 
-#: src/AdminSettings.vue:110
+#: specialVueFakeDummyForL10nScript.js:47
 msgid "Use custom color"
 msgstr "Käytä mukautettua väriä"
 
-#: src/AdminSettings.vue:152
+#: specialVueFakeDummyForL10nScript.js:58
+msgid "{title} icon"
+msgstr "{title}-kuvake"
+
+#: specialVueFakeDummyForL10nScript.js:102
 msgid "Failed to save external portal options"
 msgstr "Piensovelluksen asetusten tallennus epäonnistui"
 
-#: src/Dashboard.vue:25
+#. TRANSLATORS src/AdminSettings.vue:3
+#: specialVueFakeDummyForL10nScript.js:113
+msgid "External portal settings"
+msgstr "Portaalin asetukset"
+
+#. TRANSLATORS src/AdminSettings.vue:8
+#: specialVueFakeDummyForL10nScript.js:115
+msgid "Widget title"
+msgstr "Piensovelluksen otsikko"
+
+#. TRANSLATORS src/AdminSettings.vue:16
+#: specialVueFakeDummyForL10nScript.js:119
+msgid "Extra wide"
+msgstr "Erittäin leveä"
+
+#. TRANSLATORS src/AdminSettings.vue:19
+#: specialVueFakeDummyForL10nScript.js:121
+msgid "Expand the widget from 320px to 400px when there are more than 6 links"
+msgstr ""
+"Laajenna piensovellus 320 pikselistä 400 pikseliin, kun linkkejä on enemmän "
+"kuin 6"
+
+#. TRANSLATORS src/AdminSettings.vue:24
+#: specialVueFakeDummyForL10nScript.js:123
+msgid "Limit icon size"
+msgstr "Rajoita kuvakkeen kokoa"
+
+#. TRANSLATORS src/AdminSettings.vue:27
+#: specialVueFakeDummyForL10nScript.js:125
+msgid ""
+"Limit each icon to 64x64px to prevent small pixmap icons from being stretched"
+msgstr ""
+"Rajoita kunkin kuvakkeen koko 64x64 pikseliin, jotta pienet pikselikuvakkeet "
+"eivät venyisi"
+
+#. TRANSLATORS src/AdminSettings.vue:32
+#: specialVueFakeDummyForL10nScript.js:127
+msgid "Show Files link"
+msgstr "Näytä tiedostot-linkki"
+
+#. TRANSLATORS src/AdminSettings.vue:35
+#: specialVueFakeDummyForL10nScript.js:129
+msgid "Add a shortcut to the Files app as the first item in the widget"
+msgstr ""
+"Lisää pikakuvake tiedostot-sovellukseen piensovelluksen ensimmäiseksi "
+"kohteeksi"
+
+#. TRANSLATORS src/AdminSettings.vue:41
+#: specialVueFakeDummyForL10nScript.js:131
+msgid "Icon colors"
+msgstr "Kuvakkeiden värit"
+
+#. TRANSLATORS src/AdminSettings.vue:45
+#: specialVueFakeDummyForL10nScript.js:133
+msgid "Custom icon color"
+msgstr "Mukautettu kuvakeväri"
+
+#. TRANSLATORS src/AdminSettings.vue:50
+#: specialVueFakeDummyForL10nScript.js:135
+msgid "Preview"
+msgstr "Esikatselu"
+
+#. TRANSLATORS src/ColorInputField.vue:7
+#: specialVueFakeDummyForL10nScript.js:177
+msgid "Color"
+msgstr "Väri"
+
+#. TRANSLATORS src/Dashboard.vue:6
+#: specialVueFakeDummyForL10nScript.js:313
+msgid "Loading …"
+msgstr "Ladataan …"
+
+#. TRANSLATORS src/Dashboard.vue:8
+#: specialVueFakeDummyForL10nScript.js:315
+msgid "Could not load external sites."
+msgstr "Ulkoisten sivustojen lataaminen epäonnistui."
+
+#. TRANSLATORS src/Dashboard.vue:31
+#: specialVueFakeDummyForL10nScript.js:317
 msgid "No external sites."
 msgstr "Ei ulkoisia sivustoja."

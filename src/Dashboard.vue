@@ -1,8 +1,11 @@
 <template>
 	<div id="external-portal-widget">
-		<div v-if="loading" class="icon icon-loading" />
+		<div v-if="loading"
+			class="icon icon-loading"
+			role="img"
+			:aria-label="t('externalportal', 'Loading …')" />
 		<div v-else-if="loadError">
-			<span>{{ t('externalportal', 'Could not load external sites.') }}</span>
+			<span role="alert">{{ t('externalportal', 'Could not load external sites.') }}</span>
 		</div>
 		<div v-else-if="content.length > 0" class="external-sites">
 			<div v-for="item in content"
@@ -16,7 +19,7 @@
 						:style="`mask-image: url(${item.icon}); background-color: ${themingColor}`" />
 					<img v-else
 						class="linkitem"
-						preserveAspectRatio="xMinYMin meet"
+						alt=""
 						:src="item.icon">
 					<span class="linkname">
 						{{ item.name }}
@@ -33,7 +36,7 @@
 <script lang="ts">
 
 import axios from '@nextcloud/axios'
-import { t } from '@nextcloud/l10n'
+import { t, translate } from '@nextcloud/l10n'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 
 interface ExternalSite {
@@ -124,7 +127,10 @@ export default {
 			if (this.showFiles) {
 				const filesUrl = generateUrl('/apps/files')
 				const filesIconUrl = generateUrl('../apps/files/img/app.svg')
-				const filesLabel = t('files', 'Files')
+				// Reuse the Files app's own translation of its name. `translate` is the
+				// same function as `t`, but the string extractor only looks for `t`, so
+				// this keeps a foreign app's string out of our own catalog.
+				const filesLabel = translate('files', 'Files')
 				this.content = ([{
 					icon: filesIconUrl,
 					url: filesUrl,

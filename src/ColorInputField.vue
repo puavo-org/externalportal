@@ -4,12 +4,16 @@
 		<input :id="inputId"
 			ref="inputField"
 			type="color"
+			:aria-label="label ? undefined : t('externalportal', 'Color')"
 			:value="modelValue"
 			@input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)">
 	</div>
 </template>
 
 <script lang="ts">
+
+import { t } from '@nextcloud/l10n'
+
 export default {
 	name: 'ColorInputField',
 	props: {
@@ -35,6 +39,7 @@ export default {
 	},
 
 	methods: {
+		t,
 		focus() {
 			(this.$refs.inputField as HTMLInputElement).focus()
 		},

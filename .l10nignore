@@ -1,0 +1,12 @@
+# Paths the Nextcloud translation tool must not scan for translatable strings.
+# Matched as literal path prefixes relative to the app root; globs are not
+# supported. node_modules is skipped by the tool itself.
+
+# Build output and compiled assets
+build/
+css/
+js/
+
+# Third-party code
+vendor/
+vendor-bin/
