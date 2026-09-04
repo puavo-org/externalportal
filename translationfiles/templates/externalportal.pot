@@ -1,109 +1,140 @@
-# Translations for External Portal Nextcloud app.
-# Copyright (C) 2024-2026
-# This file is distributed under the same license as the externalportal package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Nextcloud package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: externalportal\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-17 12:28+0200\n"
+"Project-Id-Version: Nextcloud 3.14159\n"
+"Report-Msgid-Bugs-To: translations\\@example.com\n"
+"POT-Creation-Date: 2026-09-04 06:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANSLATORS src/AdminSettings.vue:9
 #: lib/Dashboard/ExternalPortalWidget.php:38
 #: lib/Settings/Section.php:30
-#: src/AdminSettings.vue:9
-#: src/AdminSettings.vue:60
-#: src/AdminSettings.vue:63
+#: specialVueFakeDummyForL10nScript.js:54
+#: specialVueFakeDummyForL10nScript.js:117
 msgid "External portal"
 msgstr ""
 
-#: appinfo/info.xml
+#: specialAppInfoFakeDummyForL10nScript.php:2
 msgid "External Portal"
 msgstr ""
 
-#: appinfo/info.xml
+#: specialAppInfoFakeDummyForL10nScript.php:3
 msgid "Dashboard Portal Widget"
 msgstr ""
 
-#: appinfo/info.xml
-msgid "A dashboard widget that displays the content from the External sites app on Dashboard."
+#: specialAppInfoFakeDummyForL10nScript.php:4
+msgid ""
+"A dashboard widget that displays the content from the External sites app on "
+"Dashboard."
 msgstr ""
 
-#: src/AdminSettings.vue:3
-msgid "External portal settings"
-msgstr ""
-
-#: src/AdminSettings.vue:8
-msgid "Widget title"
-msgstr ""
-
-#: src/AdminSettings.vue:16
-msgid "Extra wide"
-msgstr ""
-
-#: src/AdminSettings.vue:19
-msgid "Expand the widget from 320px to 400px when there are more than 6 links"
-msgstr ""
-
-#: src/AdminSettings.vue:24
-msgid "Limit icon size"
-msgstr ""
-
-#: src/AdminSettings.vue:27
-msgid "Limit each icon to 64x64px to prevent small pixmap icons from being stretched"
-msgstr ""
-
-#: src/AdminSettings.vue:32
-msgid "Show Files link"
-msgstr ""
-
-#: src/AdminSettings.vue:35
-msgid "Add a shortcut to the Files app as the first item in the widget"
-msgstr ""
-
-#: src/AdminSettings.vue:41
-msgid "Icon Colors"
-msgstr ""
-
-#: src/AdminSettings.vue:45
-msgid "Custom icon color"
-msgstr ""
-
-#: src/AdminSettings.vue:50
-msgid "Preview"
-msgstr ""
-
-#: src/AdminSettings.vue:63
-msgid "\"{title} icon\""
-msgstr ""
-
-#: src/AdminSettings.vue:107
+#: specialVueFakeDummyForL10nScript.js:44
 msgid "Use theme color"
 msgstr ""
 
-#: src/AdminSettings.vue:108
+#: specialVueFakeDummyForL10nScript.js:45
 msgid "Use text color"
 msgstr ""
 
-#: src/AdminSettings.vue:109
+#: specialVueFakeDummyForL10nScript.js:46
 msgid "Use icons as-is"
 msgstr ""
 
-#: src/AdminSettings.vue:110
+#: specialVueFakeDummyForL10nScript.js:47
 msgid "Use custom color"
 msgstr ""
 
-#: src/AdminSettings.vue:152
+#: specialVueFakeDummyForL10nScript.js:58
+msgid "{title} icon"
+msgstr ""
+
+#: specialVueFakeDummyForL10nScript.js:102
 msgid "Failed to save external portal options"
 msgstr ""
 
-#: src/Dashboard.vue:25
+#. TRANSLATORS src/AdminSettings.vue:3
+#: specialVueFakeDummyForL10nScript.js:113
+msgid "External portal settings"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:8
+#: specialVueFakeDummyForL10nScript.js:115
+msgid "Widget title"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:16
+#: specialVueFakeDummyForL10nScript.js:119
+msgid "Extra wide"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:19
+#: specialVueFakeDummyForL10nScript.js:121
+msgid "Expand the widget from 320px to 400px when there are more than 6 links"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:24
+#: specialVueFakeDummyForL10nScript.js:123
+msgid "Limit icon size"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:27
+#: specialVueFakeDummyForL10nScript.js:125
+msgid ""
+"Limit each icon to 64x64px to prevent small pixmap icons from being stretched"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:32
+#: specialVueFakeDummyForL10nScript.js:127
+msgid "Show Files link"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:35
+#: specialVueFakeDummyForL10nScript.js:129
+msgid "Add a shortcut to the Files app as the first item in the widget"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:41
+#: specialVueFakeDummyForL10nScript.js:131
+msgid "Icon colors"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:45
+#: specialVueFakeDummyForL10nScript.js:133
+msgid "Custom icon color"
+msgstr ""
+
+#. TRANSLATORS src/AdminSettings.vue:50
+#: specialVueFakeDummyForL10nScript.js:135
+msgid "Preview"
+msgstr ""
+
+#. TRANSLATORS src/ColorInputField.vue:7
+#: specialVueFakeDummyForL10nScript.js:177
+msgid "Color"
+msgstr ""
+
+#. TRANSLATORS src/Dashboard.vue:6
+#: specialVueFakeDummyForL10nScript.js:313
+msgid "Loading …"
+msgstr ""
+
+#. TRANSLATORS src/Dashboard.vue:8
+#: specialVueFakeDummyForL10nScript.js:315
+msgid "Could not load external sites."
+msgstr ""
+
+#. TRANSLATORS src/Dashboard.vue:31
+#: specialVueFakeDummyForL10nScript.js:317
 msgid "No external sites."
 msgstr ""
