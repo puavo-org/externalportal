@@ -8,7 +8,7 @@ return RectorConfig::configure()
 	->withPaths([
 		__DIR__ . '/lib',
 	])
-	->withPhpSets(php81: true)
+	->withPhpSets(php82: true)
 	->withPreparedSets(
 		deadCode: true,
 		codeQuality: true,
