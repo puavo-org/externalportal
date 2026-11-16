@@ -5,18 +5,21 @@ declare(strict_types=1);
 namespace OCA\ExternalPortal\Dashboard;
 
 use OCA\ExternalPortal\AppInfo\Application;
-use OCP\Dashboard\IWidget;
+use OCP\Dashboard\IIconWidget;
 use OCP\IAppConfig;
 use OCP\IL10N;
+use OCP\IURLGenerator;
 
-class ExternalPortalWidget implements IWidget {
+class ExternalPortalWidget implements IIconWidget {
 	private IAppConfig $appConfig;
 	private IL10N $l;
+	private IURLGenerator $urlGenerator;
 
 	/** @psalm-suppress PossiblyUnusedMethod */
-	public function __construct(IAppConfig $appConfig, IL10N $l) {
+	public function __construct(IAppConfig $appConfig, IL10N $l, IURLGenerator $urlGenerator) {
 		$this->appConfig = $appConfig;
 		$this->l = $l;
+		$this->urlGenerator = $urlGenerator;
 	}
 
 	/**
@@ -51,6 +54,15 @@ class ExternalPortalWidget implements IWidget {
 	 */
 	public function getIconClass(): string {
 		return 'icon-externalportal';
+	}
+
+	/**
+	 * @return string Absolute url of a black icon; the dashboard inverts it in dark mode
+	 */
+	public function getIconUrl(): string {
+		return $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->imagePath(Application::APP_ID, 'externalportal-dark.svg'),
+		);
 	}
 
 	/**

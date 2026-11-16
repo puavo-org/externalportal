@@ -1,43 +1,63 @@
 <template>
-	<div id="external-portal-widget">
-		<div v-if="loading"
-			class="icon icon-loading"
-			role="img"
-			:aria-label="t('externalportal', 'Loading …')" />
-		<div v-else-if="loadError">
-			<span role="alert">{{ t('externalportal', 'Could not load external sites.') }}</span>
+	<div class="external-portal">
+		<div v-if="loading" class="external-portal__state">
+			<NcLoadingIcon :size="32" :name="t('externalportal', 'Loading …')" />
 		</div>
-		<div v-else-if="content.length > 0" class="external-sites">
-			<div v-for="item in content"
-				:key="item.id"
-				:class="itemClasses">
-				<a :href="itemHref(item)"
-					:target="item.redirect ? '_blank' : ''"
-					:rel="item.redirect ? 'noopener' : ''">
-					<div v-if="themingColor !== undefined"
-						class="linkitem masked-icon"
-						:style="`mask-image: url(${item.icon}); background-color: ${themingColor}`" />
-					<img v-else
-						class="linkitem"
-						alt=""
-						:src="item.icon">
-					<span class="linkname">
-						{{ item.name }}
+		<NcEmptyContent v-else-if="loadError"
+			class="external-portal__state"
+			role="alert"
+			:name="t('externalportal', 'Could not load external sites.')">
+			<template #icon>
+				<NcIconSvgWrapper :path="mdiAlertCircleOutline" />
+			</template>
+			<template #action>
+				<NcButton @click="reload">
+					{{ t('externalportal', 'Try again') }}
+				</NcButton>
+			</template>
+		</NcEmptyContent>
+		<ul v-else-if="content.length > 0"
+			class="external-portal__grid"
+			:aria-label="t('externalportal', 'External sites')">
+			<li v-for="item in content" :key="item.id ?? item.url">
+				<a class="site-tile"
+					:href="itemHref(item)"
+					:target="item.redirect ? '_blank' : undefined"
+					:rel="item.redirect ? 'noopener noreferrer' : undefined"
+					:title="item.name">
+					<span class="site-tile__circle" :class="`site-tile__circle--${iconMode}`" :style="circleStyle">
+						<img v-if="iconMode === 'original'"
+							class="site-tile__image"
+							alt=""
+							:src="item.icon">
+						<span v-else
+							class="site-tile__glyph"
+							aria-hidden="true"
+							:style="{ '--site-icon-url': `url('${item.icon}')` }" />
 					</span>
+					<span class="site-tile__label">{{ item.name }}</span>
 				</a>
-			</div>
-		</div>
-		<div v-else>
-			<span>{{ t('externalportal', 'No external sites.') }}</span>
-		</div>
+			</li>
+		</ul>
+		<NcEmptyContent v-else
+			class="external-portal__state"
+			:name="t('externalportal', 'No external sites.')">
+			<template #icon>
+				<NcIconSvgWrapper :path="mdiWeb" />
+			</template>
+		</NcEmptyContent>
 	</div>
 </template>
 
 <script lang="ts">
-
+import { mdiAlertCircleOutline, mdiWeb } from '@mdi/js'
 import axios from '@nextcloud/axios'
 import { t, translate } from '@nextcloud/l10n'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
+import NcIconSvgWrapper from '@nextcloud/vue/components/NcIconSvgWrapper'
+import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
 
 interface ExternalSite {
 	id?: number
@@ -47,15 +67,34 @@ interface ExternalSite {
 	redirect?: number
 }
 
+/**
+ * How the icons are drawn. Maps the stored `iconColorMode` setting:
+ * - theme: tinted with the theme color, like the apps in the app menu
+ * - text: monochrome in the text color
+ * - custom: tinted with the admin's custom color
+ * - original: the icon file as-is, for multicolor logos
+ */
+type IconMode = 'theme' | 'text' | 'custom' | 'original'
+
 export default {
 	name: 'ExternalPortalDashboard',
+	components: {
+		NcButton,
+		NcEmptyContent,
+		NcIconSvgWrapper,
+		NcLoadingIcon,
+	},
+
+	setup() {
+		return { mdiAlertCircleOutline, mdiWeb }
+	},
+
 	data() {
 		return {
 			loading: true,
 			loadError: false,
 			content: [] as ExternalSite[],
 			extraWide: '' as string | boolean,
-			maxSize: '' as string | boolean,
 			showFiles: '' as string | boolean,
 			iconColorMode: 'DEFAULT',
 			customIconColor: '',
@@ -63,25 +102,23 @@ export default {
 	},
 
 	computed: {
-		themingColor() {
-			if (this.iconColorMode === 'CUSTOM') {
-				return this.customIconColor
-			} else if (!OCA.Theming || this.iconColorMode === 'PRIMARY') {
-				return 'var(--color-main-text)'
-			} else if (this.iconColorMode === 'THEMING') {
-				return OCA.Theming.color
-			} else {
-				return undefined
+		iconMode(): IconMode {
+			switch (this.iconColorMode) {
+				case 'THEMING':
+					return 'theme'
+				case 'PRIMARY':
+					return 'text'
+				case 'CUSTOM':
+					return this.customIconColor ? 'custom' : 'theme'
+				default:
+					return 'original'
 			}
 		},
 
-		itemClasses() {
-			return {
-				externalsite: true,
-				smaller: this.content.length > 4 && this.content.length < 7,
-				smallest: this.content.length > 6,
-				maxsized: this.maxSize,
-			}
+		circleStyle(): Record<string, string> {
+			return this.iconMode === 'custom'
+				? { '--site-custom-color': this.customIconColor }
+				: {}
 		},
 	},
 
@@ -116,7 +153,6 @@ export default {
 			try {
 				const response = await axios.get(url)
 				this.extraWide = response.data.extraWide
-				this.maxSize = response.data.maxSize
 				this.showFiles = response.data.showFiles
 				this.iconColorMode = response.data.iconColorMode
 				this.customIconColor = response.data.customIconColor
@@ -169,82 +205,165 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#external-portal-widget {
+// Tiles follow the app menu in the Nextcloud header (core AppMenuItem and
+// AppIcon), so external sites look like the user's other apps.
+$bevel:
+	inset 0 -1px 0 0 color-mix(in srgb, var(--site-circle-color), 10% var(--site-glyph-color)),
+	inset 0 -4px 6px -4px color-mix(in srgb, var(--site-circle-color), 16% var(--site-glyph-color));
+
+.external-portal {
+	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	height: 100%;
-	text-align: center;
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-scrollbar) transparent;
 
-	.external-sites {
+	&__state {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-evenly;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+
+	&__grid {
+		display: grid;
+		// Four columns in a normal panel, five in an extra wide one.
+		// The 288px content area of a normal panel fits four 64px columns plus padding.
+		grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+		row-gap: calc(var(--default-grid-baseline) * 2);
+		padding: var(--default-grid-baseline);
+		margin: 0;
+		list-style: none;
+	}
+}
+
+.site-tile {
+	--site-circle-size: calc(var(--default-grid-baseline) * 12);
+	--site-glyph-size: calc(var(--site-circle-size) * 7 / 12);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--default-grid-baseline);
+	padding-block: var(--default-grid-baseline);
+	border-radius: var(--border-radius-element);
+	color: var(--color-main-text);
+	text-decoration: none;
+	min-width: 0;
+
+	&:focus-visible {
+		outline: none;
+		box-shadow: inset 0 0 0 2px var(--color-primary-element);
+	}
+
+	&:hover,
+	&:focus-visible {
+		--site-circle-scale: 1.08;
+	}
+
+	&:active {
+		--site-circle-scale: 0.96;
+	}
+
+	&__circle {
+		// Theme color is the default look, matching the app menu.
+		--site-circle-color: var(--color-primary-element-light);
+		--site-glyph-color: var(--color-primary-element);
+		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--site-circle-size);
+		height: var(--site-circle-size);
+		border-radius: 50%;
+		transform: scale(var(--site-circle-scale, 1));
+		transition: transform var(--animation-quick) ease-out;
+		background-color: var(--site-circle-color);
+		background-image: linear-gradient(
+			to bottom,
+			color-mix(in srgb, var(--site-circle-color), 15% var(--color-main-background)) 0%,
+			var(--site-circle-color) 100%
+		);
+		--site-bevel: #{$bevel};
+		box-shadow: var(--site-bevel);
+
+		// Dark themes drop the bevel, like the app menu does.
+		@media (prefers-color-scheme: dark) {
+			--site-bevel: none;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+
+		&--text {
+			--site-circle-color: var(--color-background-dark);
+			--site-glyph-color: var(--color-main-text);
+		}
+
+		&--custom {
+			--site-circle-color: color-mix(in srgb, var(--site-custom-color), 82% var(--color-main-background));
+			--site-glyph-color: var(--site-custom-color);
+		}
+
+		// Multicolor logos keep their own colors. No circle: a light or dark
+		// circle would hide white or black logos, so a soft shadow separates
+		// them from the panel instead. Doubled class to beat the theme rules below.
+		&#{&}--original {
+			background: none;
+			--site-bevel: none;
+		}
+	}
+
+	&__glyph {
+		width: var(--site-glyph-size);
+		height: var(--site-glyph-size);
+		// Masked rather than shown: site icons ship a hardcoded fill, so the
+		// color has to come from the background.
+		background-color: var(--site-glyph-color);
+		background-image: linear-gradient(
+			to bottom,
+			color-mix(in srgb, var(--site-glyph-color), 28% var(--site-circle-color)) 0%,
+			var(--site-glyph-color) 100%
+		);
+		mask: var(--site-icon-url) center / contain no-repeat;
+
+		@media (forced-colors: active) {
+			background-color: CanvasText;
+			background-image: none;
+		}
+	}
+
+	&__image {
+		width: calc(var(--site-circle-size) * 5 / 6);
+		height: calc(var(--site-circle-size) * 5 / 6);
+		object-fit: contain;
+		filter: drop-shadow(0 1px 2px rgb(0 0 0 / 35%));
+	}
+
+	&__label {
+		max-width: 100%;
+		padding-inline: var(--default-grid-baseline);
+		font-size: 12px;
+		line-height: 1.3;
+		letter-spacing: -0.3px;
+		text-align: center;
+		hyphens: auto;
+		overflow-wrap: break-word;
+		// Long names wrap to two lines at most; the full name is in the title.
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
 		overflow: hidden;
 	}
+}
 
-	div.externalsite {
-		width: 48%;
-		display: inline-block;
-		vertical-align: top;
-		padding-inline: 0.1rem;
-		box-sizing: border-box;
+// An explicit theme choice must beat the media query above, which only sees the OS.
+:global([data-themes*=dark] .site-tile__circle) {
+	--site-bevel: none;
+}
 
-		div.masked-icon, img {
-			filter: drop-shadow(5px 5px 5px #888);
-		}
-
-		img {
-			padding: 0.5rem;
-		}
-
-		div.masked-icon {
-			background-color: var(--color-primary);
-			mask-size: 90%;
-			mask-position: center;
-			mask-repeat: no-repeat;
-			aspect-ratio: 1;
-			box-sizing: border-box;
-			height: auto;
-			padding: 4px;
-		}
-
-		.linkname {
-			text-align: center;
-		}
-	}
-
-	div.icon-loading {
-		margin: 1rem;
-	}
-
-	div.smaller {
-		width: 39%;
-	}
-
-	div.smallest {
-		width: 30%;
-	}
-
-	div.maxsized {
-		max-width: 80px;
-		margin: 0.5rem;
-
-		.linkitem {
-			max-width: 64px;
-			max-height: 64px;
-		}
-	}
-
-	.linkitem {
-		width: 95%;
-		height: auto;
-		margin-top: 0.5rem;
-	}
-
-	.linkitem:hover {
-		transition: transform .2s;
-		transform: scale(1.1);
-		box-shadow: 0px 0px 0.1em 0.1em #f5f5f582, inset 0 0 2em 1em #f5f5f582;
-	}
+:global([data-themes*=light] .site-tile__circle) {
+	--site-bevel: #{$bevel};
 }
 </style>
