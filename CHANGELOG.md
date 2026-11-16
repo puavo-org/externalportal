@@ -1,5 +1,11 @@
 # External Portal changelog
 
+## [2.3.0] - 2026-11-13
+### Changed
+- Compatibility with Nextcloud 35.
+- Supported Nextcloud versions: 33-35. Nextcloud 32 is no longer supported.
+- Require PHP 8.2+, matching the minimum of Nextcloud 33.
+
 ## [2.2.0] - 2026-09-02
 ### Changed
 - Compatibility with Nextcloud 34.
