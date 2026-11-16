@@ -27,7 +27,7 @@ class ConfigController extends Controller {
 	private const ALLOWED_KEYS = [
 		'widgetTitle',
 		'extraWide',
-		'maxSize',
+		'iconSize',
 		'showFiles',
 		'iconColorMode',
 		'customIconColor',
@@ -48,14 +48,14 @@ class ConfigController extends Controller {
 	#[NoAdminRequired]
 	public function getConfig(): DataResponse {
 		$extraWide = $this->appConfig->getValueString(Application::APP_ID, 'extraWide', '');
-		$maxSize = $this->appConfig->getValueString(Application::APP_ID, 'maxSize', '');
+		$iconSize = $this->appConfig->getValueString(Application::APP_ID, 'iconSize', 'medium');
 		$showFiles = $this->appConfig->getValueString(Application::APP_ID, 'showFiles', '');
 		$iconColorMode = $this->appConfig->getValueString(Application::APP_ID, 'iconColorMode', 'DEFAULT');
 		$customIconColor = $this->appConfig->getValueString(Application::APP_ID, 'customIconColor', '');
 		return new DataResponse([
 			'extraWide' => $extraWide,
 			'showFiles' => $showFiles,
-			'maxSize' => $maxSize,
+			'iconSize' => $iconSize,
 			'iconColorMode' => $iconColorMode,
 			'customIconColor' => $customIconColor,
 		]);

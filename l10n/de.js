@@ -30,6 +30,10 @@ OC.L10N.register(
     "Tinted with a color of your choice" : "Mit einer Farbe Ihrer Wahl eingefärbt",
     "Original icons" : "Originalsymbole",
     "Keep the colors of multicolor logos" : "Die Farben mehrfarbiger Logos bleiben erhalten",
-    "Choose icon color" : "Symbolfarbe auswählen"
+    "Choose icon color" : "Symbolfarbe auswählen",
+    "Icon size" : "Symbolgröße",
+    "Small" : "Klein",
+    "Medium" : "Mittel",
+    "Large" : "Groß"
 },
 "nplurals=2; plural=(n != 1);");

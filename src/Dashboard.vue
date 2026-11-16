@@ -18,6 +18,7 @@
 		</NcEmptyContent>
 		<ul v-else-if="content.length > 0"
 			class="external-portal__grid"
+			:class="`external-portal__grid--${size}`"
 			:aria-label="t('externalportal', 'External sites')">
 			<li v-for="item in content" :key="item.id ?? item.url">
 				<a class="site-tile"
@@ -76,6 +77,8 @@ interface ExternalSite {
  */
 type IconMode = 'theme' | 'text' | 'custom' | 'original'
 
+type IconSize = 'small' | 'medium' | 'large'
+
 export default {
 	name: 'ExternalPortalDashboard',
 	components: {
@@ -96,12 +99,19 @@ export default {
 			content: [] as ExternalSite[],
 			extraWide: '' as string | boolean,
 			showFiles: '' as string | boolean,
+			iconSize: 'medium',
 			iconColorMode: 'DEFAULT',
 			customIconColor: '',
 		}
 	},
 
 	computed: {
+		size(): IconSize {
+			return ['small', 'medium', 'large'].includes(this.iconSize)
+				? this.iconSize as IconSize
+				: 'medium'
+		},
+
 		iconMode(): IconMode {
 			switch (this.iconColorMode) {
 				case 'THEMING':
@@ -154,6 +164,7 @@ export default {
 				const response = await axios.get(url)
 				this.extraWide = response.data.extraWide
 				this.showFiles = response.data.showFiles
+				this.iconSize = response.data.iconSize
 				this.iconColorMode = response.data.iconColorMode
 				this.customIconColor = response.data.customIconColor
 			} catch (e) {
@@ -226,19 +237,32 @@ $bevel:
 	}
 
 	&__grid {
+		// Column widths are picked so a normal panel (288px of content) fits
+		// four, three and three columns, and an extra wide one (368px) one more.
+		--site-column-width: 64px;
+		--site-circle-size: calc(var(--default-grid-baseline) * 12);
 		display: grid;
-		// Four columns in a normal panel, five in an extra wide one.
-		// The 288px content area of a normal panel fits four 64px columns plus padding.
-		grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(var(--site-column-width), 1fr));
 		row-gap: calc(var(--default-grid-baseline) * 2);
 		padding: var(--default-grid-baseline);
 		margin: 0;
 		list-style: none;
+
+		// Small matches the app menu in the header.
+		&--medium {
+			--site-column-width: 88px;
+			--site-circle-size: calc(var(--default-grid-baseline) * 16);
+		}
+
+		&--large {
+			--site-column-width: 88px;
+			--site-circle-size: calc(var(--default-grid-baseline) * 20);
+			--site-label-size: var(--default-font-size);
+		}
 	}
 }
 
 .site-tile {
-	--site-circle-size: calc(var(--default-grid-baseline) * 12);
 	--site-glyph-size: calc(var(--site-circle-size) * 7 / 12);
 	display: flex;
 	flex-direction: column;
@@ -343,7 +367,7 @@ $bevel:
 	&__label {
 		max-width: 100%;
 		padding-inline: var(--default-grid-baseline);
-		font-size: 12px;
+		font-size: var(--site-label-size, 12px);
 		line-height: 1.3;
 		letter-spacing: -0.3px;
 		text-align: center;

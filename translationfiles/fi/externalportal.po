@@ -141,3 +141,15 @@ msgstr "Moniväristen logojen värit säilyvät"
 
 msgid "Choose icon color"
 msgstr "Valitse kuvakkeiden väri"
+
+msgid "Icon size"
+msgstr "Kuvakkeiden koko"
+
+msgid "Small"
+msgstr "Pieni"
+
+msgid "Medium"
+msgstr "Keskikokoinen"
+
+msgid "Large"
+msgstr "Suuri"

@@ -142,3 +142,15 @@ msgstr "Die Farben mehrfarbiger Logos bleiben erhalten"
 
 msgid "Choose icon color"
 msgstr "Symbolfarbe auswählen"
+
+msgid "Icon size"
+msgstr "Symbolgröße"
+
+msgid "Small"
+msgstr "Klein"
+
+msgid "Medium"
+msgstr "Mittel"
+
+msgid "Large"
+msgstr "Groß"

@@ -133,3 +133,15 @@ msgstr ""
 
 msgid "Choose icon color"
 msgstr ""
+
+msgid "Icon size"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Large"
+msgstr ""

@@ -25,6 +25,14 @@
 					</NcFormBox>
 				</NcFormGroup>
 
+				<NcRadioGroup :modelValue="state.iconSize || 'medium'"
+					:label="t('externalportal', 'Icon size')"
+					@update:modelValue="updateField('iconSize', $event)">
+					<NcRadioGroupButton value="small" :label="t('externalportal', 'Small')" />
+					<NcRadioGroupButton value="medium" :label="t('externalportal', 'Medium')" />
+					<NcRadioGroupButton value="large" :label="t('externalportal', 'Large')" />
+				</NcRadioGroup>
+
 				<NcRadioGroup :modelValue="state.iconColorMode"
 					:label="t('externalportal', 'Icon style')"
 					@update:modelValue="updateField('iconColorMode', $event)">
@@ -105,6 +113,7 @@ import NcFormBox from '@nextcloud/vue/components/NcFormBox'
 import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
 import NcFormGroup from '@nextcloud/vue/components/NcFormGroup'
 import NcRadioGroup from '@nextcloud/vue/components/NcRadioGroup'
+import NcRadioGroupButton from '@nextcloud/vue/components/NcRadioGroupButton'
 import NcSettingsSection from '@nextcloud/vue/components/NcSettingsSection'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
 import Dashboard from './Dashboard.vue'
@@ -113,6 +122,7 @@ interface AdminConfig {
 	widgetTitle: string
 	extraWide: string | boolean
 	showFiles: string | boolean
+	iconSize: string
 	iconColorMode: string
 	customIconColor: string
 	[key: string]: string | boolean
@@ -128,6 +138,7 @@ export default {
 		NcFormBoxSwitch,
 		NcFormGroup,
 		NcRadioGroup,
+		NcRadioGroupButton,
 		NcSettingsSection,
 		NcTextField,
 		Dashboard,
@@ -182,6 +193,7 @@ export default {
 				widgetTitle: this.state.widgetTitle,
 				extraWide: this.state.extraWide ? '1' : '',
 				showFiles: this.state.showFiles ? '1' : '',
+				iconSize: this.state.iconSize,
 				iconColorMode: this.state.iconColorMode,
 				customIconColor: this.state.customIconColor,
 			}

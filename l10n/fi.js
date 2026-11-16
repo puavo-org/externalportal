@@ -30,6 +30,10 @@ OC.L10N.register(
     "Tinted with a color of your choice" : "Sävytetty valitsemallasi värillä",
     "Original icons" : "Alkuperäiset kuvakkeet",
     "Keep the colors of multicolor logos" : "Moniväristen logojen värit säilyvät",
-    "Choose icon color" : "Valitse kuvakkeiden väri"
+    "Choose icon color" : "Valitse kuvakkeiden väri",
+    "Icon size" : "Kuvakkeiden koko",
+    "Small" : "Pieni",
+    "Medium" : "Keskikokoinen",
+    "Large" : "Suuri"
 },
 "nplurals=2; plural=(n != 1);");

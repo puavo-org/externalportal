@@ -27,7 +27,7 @@ class Admin implements ISettings {
 		$adminConfig = [
 			'widgetTitle' => $this->appConfig->getValueString(Application::APP_ID, 'widgetTitle', ''),
 			'extraWide' => $this->appConfig->getValueString(Application::APP_ID, 'extraWide', ''),
-			'maxSize' => $this->appConfig->getValueString(Application::APP_ID, 'maxSize', ''),
+			'iconSize' => $this->appConfig->getValueString(Application::APP_ID, 'iconSize', 'medium'),
 			'showFiles' => $this->appConfig->getValueString(Application::APP_ID, 'showFiles', ''),
 			'iconColorMode' => $this->appConfig->getValueString(Application::APP_ID, 'iconColorMode', 'DEFAULT'),
 			'customIconColor' => $this->appConfig->getValueString(Application::APP_ID, 'customIconColor', ''),
