@@ -34,6 +34,16 @@ updates:
       time: "03:00"
       timezone: Europe/Paris
     open-pull-requests-limit: 10
+    ignore:
+      # vite 8 needs @nextcloud/vite-config 3, which is still in beta.
+      # Upgrade both together when Dependabot proposes vite-config 3.0.0,
+      # then drop this rule.
+      - dependency-name: "vite"
+        update-types: ["version-update:semver-major"]
+      # The build tooling does not support TypeScript 7.0 yet. Ignoring only
+      # 7.0.x makes Dependabot retry when 7.1 is released.
+      - dependency-name: "typescript"
+        versions: ["7.0.x"]
     groups:
       npm-development:
         dependency-type: development
