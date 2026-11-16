@@ -1,10 +1,18 @@
 # External Portal changelog
 
-## [2.3.0] - 2026-11-13
+## [2.3.0] - 2026-11-16
 ### Changed
 - Compatibility with Nextcloud 35.
 - Supported Nextcloud versions: 33-35. Nextcloud 32 is no longer supported.
 - Require PHP 8.2+, matching the minimum of Nextcloud 33.
+- Update runtime dependencies: @nextcloud/dialogs to 8.0.0, @nextcloud/vue to 9.14.1, @nextcloud/router to 3.2.0 and vue to 3.5.45.
+- Update development dependencies, including rector/rector and js-yaml.
+### Fixed
+- The Files shortcut label on the dashboard widget is now translated.
+- The description of the icon preview in the admin settings is now translated.
+- The German translation catalog could not be compiled; it is repaired and all catalogs are regenerated.
+- Accessibility: the loading spinner has a label, the load error is announced to screen readers, link icons no longer repeat the link text, and the colour input has a fallback name.
+- Update bundled dependencies for security advisories, including axios 1.20.0 and dompurify 3.4.17.
 
 ## [2.2.0] - 2026-09-02
 ### Changed
