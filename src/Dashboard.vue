@@ -218,6 +218,11 @@ export default {
 <style scoped lang="scss">
 // Tiles follow the app menu in the Nextcloud header (core AppMenuItem and
 // AppIcon), so external sites look like the user's other apps.
+// Separates original icons from the panel: a shadow on light themes, a light
+// halo on dark ones, where black logos would otherwise vanish.
+$image-shadow-light: drop-shadow(0 1px 2px rgb(0 0 0 / 35%));
+$image-shadow-dark: drop-shadow(0 0 1px rgb(255 255 255 / 70%)) drop-shadow(0 0 3px rgb(255 255 255 / 30%));
+
 $bevel:
 	inset 0 -1px 0 0 color-mix(in srgb, var(--site-circle-color), 10% var(--site-glyph-color)),
 	inset 0 -4px 6px -4px color-mix(in srgb, var(--site-circle-color), 16% var(--site-glyph-color));
@@ -308,11 +313,13 @@ $bevel:
 			var(--site-circle-color) 100%
 		);
 		--site-bevel: #{$bevel};
+		--site-image-shadow: #{$image-shadow-light};
 		box-shadow: var(--site-bevel);
 
 		// Dark themes drop the bevel, like the app menu does.
 		@media (prefers-color-scheme: dark) {
 			--site-bevel: none;
+			--site-image-shadow: #{$image-shadow-dark};
 		}
 
 		@media (prefers-reduced-motion: reduce) {
@@ -330,8 +337,8 @@ $bevel:
 		}
 
 		// Multicolor logos keep their own colors. No circle: a light or dark
-		// circle would hide white or black logos, so a soft shadow separates
-		// them from the panel instead. Doubled class to beat the theme rules below.
+		// circle would hide white or black logos, so a soft shadow (a halo on
+		// dark themes) separates them from the panel instead. Doubled class to beat the theme rules below.
 		&#{&}--original {
 			background: none;
 			--site-bevel: none;
@@ -361,7 +368,7 @@ $bevel:
 		width: calc(var(--site-circle-size) * 5 / 6);
 		height: calc(var(--site-circle-size) * 5 / 6);
 		object-fit: contain;
-		filter: drop-shadow(0 1px 2px rgb(0 0 0 / 35%));
+		filter: var(--site-image-shadow);
 	}
 
 	&__label {
@@ -385,9 +392,11 @@ $bevel:
 // An explicit theme choice must beat the media query above, which only sees the OS.
 :global([data-themes*=dark] .site-tile__circle) {
 	--site-bevel: none;
+	--site-image-shadow: #{$image-shadow-dark};
 }
 
 :global([data-themes*=light] .site-tile__circle) {
 	--site-bevel: #{$bevel};
+	--site-image-shadow: #{$image-shadow-light};
 }
 </style>
