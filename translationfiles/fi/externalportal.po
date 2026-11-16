@@ -16,8 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANSLATORS src/AdminSettings.vue:9
-#: lib/Dashboard/ExternalPortalWidget.php:38
-#: lib/Settings/Section.php:30
+#: lib/Dashboard/ExternalPortalWidget.php:38 lib/Settings/Section.php:30
 #: specialVueFakeDummyForL10nScript.js:54
 #: specialVueFakeDummyForL10nScript.js:117
 msgid "External portal"
@@ -39,22 +38,6 @@ msgstr ""
 "Koontinäytön piensovellus, joka näyttää ulkoiset sivustot -sovelluksen "
 "sisällön koontinäytöllä."
 
-#: specialVueFakeDummyForL10nScript.js:44
-msgid "Use theme color"
-msgstr "Käytä teeman väriä"
-
-#: specialVueFakeDummyForL10nScript.js:45
-msgid "Use text color"
-msgstr "Käytä tekstin väriä"
-
-#: specialVueFakeDummyForL10nScript.js:46
-msgid "Use icons as-is"
-msgstr "Käytä kuvakkeita sellaisinaan"
-
-#: specialVueFakeDummyForL10nScript.js:47
-msgid "Use custom color"
-msgstr "Käytä mukautettua väriä"
-
 #: specialVueFakeDummyForL10nScript.js:58
 msgid "{title} icon"
 msgstr "{title}-kuvake"
@@ -62,11 +45,6 @@ msgstr "{title}-kuvake"
 #: specialVueFakeDummyForL10nScript.js:102
 msgid "Failed to save external portal options"
 msgstr "Piensovelluksen asetusten tallennus epäonnistui"
-
-#. TRANSLATORS src/AdminSettings.vue:3
-#: specialVueFakeDummyForL10nScript.js:113
-msgid "External portal settings"
-msgstr "Portaalin asetukset"
 
 #. TRANSLATORS src/AdminSettings.vue:8
 #: specialVueFakeDummyForL10nScript.js:115
@@ -77,26 +55,6 @@ msgstr "Piensovelluksen otsikko"
 #: specialVueFakeDummyForL10nScript.js:119
 msgid "Extra wide"
 msgstr "Erittäin leveä"
-
-#. TRANSLATORS src/AdminSettings.vue:19
-#: specialVueFakeDummyForL10nScript.js:121
-msgid "Expand the widget from 320px to 400px when there are more than 6 links"
-msgstr ""
-"Laajenna piensovellus 320 pikselistä 400 pikseliin, kun linkkejä on enemmän "
-"kuin 6"
-
-#. TRANSLATORS src/AdminSettings.vue:24
-#: specialVueFakeDummyForL10nScript.js:123
-msgid "Limit icon size"
-msgstr "Rajoita kuvakkeen kokoa"
-
-#. TRANSLATORS src/AdminSettings.vue:27
-#: specialVueFakeDummyForL10nScript.js:125
-msgid ""
-"Limit each icon to 64x64px to prevent small pixmap icons from being stretched"
-msgstr ""
-"Rajoita kunkin kuvakkeen koko 64x64 pikseliin, jotta pienet pikselikuvakkeet "
-"eivät venyisi"
 
 #. TRANSLATORS src/AdminSettings.vue:32
 #: specialVueFakeDummyForL10nScript.js:127
@@ -110,25 +68,10 @@ msgstr ""
 "Lisää pikakuvake tiedostot-sovellukseen piensovelluksen ensimmäiseksi "
 "kohteeksi"
 
-#. TRANSLATORS src/AdminSettings.vue:41
-#: specialVueFakeDummyForL10nScript.js:131
-msgid "Icon colors"
-msgstr "Kuvakkeiden värit"
-
-#. TRANSLATORS src/AdminSettings.vue:45
-#: specialVueFakeDummyForL10nScript.js:133
-msgid "Custom icon color"
-msgstr "Mukautettu kuvakeväri"
-
 #. TRANSLATORS src/AdminSettings.vue:50
 #: specialVueFakeDummyForL10nScript.js:135
 msgid "Preview"
 msgstr "Esikatselu"
-
-#. TRANSLATORS src/ColorInputField.vue:7
-#: specialVueFakeDummyForL10nScript.js:177
-msgid "Color"
-msgstr "Väri"
 
 #. TRANSLATORS src/Dashboard.vue:6
 #: specialVueFakeDummyForL10nScript.js:313
@@ -144,3 +87,57 @@ msgstr "Ulkoisten sivustojen lataaminen epäonnistui."
 #: specialVueFakeDummyForL10nScript.js:317
 msgid "No external sites."
 msgstr "Ei ulkoisia sivustoja."
+
+msgid "Try again"
+msgstr "Yritä uudelleen"
+
+msgid "External sites"
+msgstr "Ulkoiset sivustot"
+
+msgid ""
+"A dashboard widget that shows the sites from the External sites app as app "
+"icons."
+msgstr ""
+"Koontinäytön piensovellus, joka näyttää ulkoiset sivustot -sovelluksen "
+"sivustot sovelluskuvakkeina."
+
+msgid "Leave empty to use the default title."
+msgstr "Jätä tyhjäksi, niin käytetään oletusotsikkoa."
+
+msgid "Content"
+msgstr "Sisältö"
+
+msgid ""
+"Show five icons per row instead of four when there are more than 6 links"
+msgstr ""
+"Näytä rivillä viisi kuvaketta neljän sijaan, kun linkkejä on enemmän kuin 6"
+
+msgid "Icon style"
+msgstr "Kuvakkeiden tyyli"
+
+msgid "Theme color"
+msgstr "Teeman väri"
+
+msgid "Tinted like the apps in the app menu"
+msgstr "Sävytetty kuten sovellusvalikon sovellukset"
+
+msgid "Monochrome"
+msgstr "Yksivärinen"
+
+msgid "Icons in the text color"
+msgstr "Kuvakkeet tekstin värillä"
+
+msgid "Custom color"
+msgstr "Mukautettu väri"
+
+msgid "Tinted with a color of your choice"
+msgstr "Sävytetty valitsemallasi värillä"
+
+msgid "Original icons"
+msgstr "Alkuperäiset kuvakkeet"
+
+msgid "Keep the colors of multicolor logos"
+msgstr "Moniväristen logojen värit säilyvät"
+
+msgid "Choose icon color"
+msgstr "Valitse kuvakkeiden väri"

@@ -16,8 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANSLATORS src/AdminSettings.vue:9
-#: lib/Dashboard/ExternalPortalWidget.php:38
-#: lib/Settings/Section.php:30
+#: lib/Dashboard/ExternalPortalWidget.php:38 lib/Settings/Section.php:30
 #: specialVueFakeDummyForL10nScript.js:54
 #: specialVueFakeDummyForL10nScript.js:117
 msgid "External portal"
@@ -39,22 +38,6 @@ msgstr ""
 "Ein Dashboard-Widget, das die Inhalte der App „Externe Seiten“ auf dem "
 "Dashboard anzeigt."
 
-#: specialVueFakeDummyForL10nScript.js:44
-msgid "Use theme color"
-msgstr "Designfarbe verwenden"
-
-#: specialVueFakeDummyForL10nScript.js:45
-msgid "Use text color"
-msgstr "Textfarbe verwenden"
-
-#: specialVueFakeDummyForL10nScript.js:46
-msgid "Use icons as-is"
-msgstr "Symbole unverändert verwenden"
-
-#: specialVueFakeDummyForL10nScript.js:47
-msgid "Use custom color"
-msgstr "Benutzerdefinierte Farbe verwenden"
-
 #: specialVueFakeDummyForL10nScript.js:58
 msgid "{title} icon"
 msgstr "{title}-Symbol"
@@ -63,11 +46,6 @@ msgstr "{title}-Symbol"
 msgid "Failed to save external portal options"
 msgstr ""
 "Einstellungen für Externe Seiten Portal konnten nicht gespeichert werden"
-
-#. TRANSLATORS src/AdminSettings.vue:3
-#: specialVueFakeDummyForL10nScript.js:113
-msgid "External portal settings"
-msgstr "Einstellungen für Externe Seiten Portal"
 
 #. TRANSLATORS src/AdminSettings.vue:8
 #: specialVueFakeDummyForL10nScript.js:115
@@ -78,26 +56,6 @@ msgstr "Widget-Titel"
 #: specialVueFakeDummyForL10nScript.js:119
 msgid "Extra wide"
 msgstr "Extra breit"
-
-#. TRANSLATORS src/AdminSettings.vue:19
-#: specialVueFakeDummyForL10nScript.js:121
-msgid "Expand the widget from 320px to 400px when there are more than 6 links"
-msgstr ""
-"Das Widget von 320px auf 400px erweitern, wenn mehr als 6 Links vorhanden "
-"sind"
-
-#. TRANSLATORS src/AdminSettings.vue:24
-#: specialVueFakeDummyForL10nScript.js:123
-msgid "Limit icon size"
-msgstr "Symbolgröße begrenzen"
-
-#. TRANSLATORS src/AdminSettings.vue:27
-#: specialVueFakeDummyForL10nScript.js:125
-msgid ""
-"Limit each icon to 64x64px to prevent small pixmap icons from being stretched"
-msgstr ""
-"Jedes Symbol auf 64x64px begrenzen, damit kleine Pixmap-Symbole nicht "
-"gestreckt werden"
 
 #. TRANSLATORS src/AdminSettings.vue:32
 #: specialVueFakeDummyForL10nScript.js:127
@@ -110,25 +68,10 @@ msgid "Add a shortcut to the Files app as the first item in the widget"
 msgstr ""
 "Eine Verknüpfung zur Dateien-App als erstes Element im Widget hinzufügen"
 
-#. TRANSLATORS src/AdminSettings.vue:41
-#: specialVueFakeDummyForL10nScript.js:131
-msgid "Icon colors"
-msgstr "Symbolfarben"
-
-#. TRANSLATORS src/AdminSettings.vue:45
-#: specialVueFakeDummyForL10nScript.js:133
-msgid "Custom icon color"
-msgstr "Benutzerdefinierte Symbolfarbe"
-
 #. TRANSLATORS src/AdminSettings.vue:50
 #: specialVueFakeDummyForL10nScript.js:135
 msgid "Preview"
 msgstr "Vorschau"
-
-#. TRANSLATORS src/ColorInputField.vue:7
-#: specialVueFakeDummyForL10nScript.js:177
-msgid "Color"
-msgstr "Farbe"
 
 #. TRANSLATORS src/Dashboard.vue:6
 #: specialVueFakeDummyForL10nScript.js:313
@@ -144,3 +87,58 @@ msgstr "Externe Seiten konnten nicht geladen werden."
 #: specialVueFakeDummyForL10nScript.js:317
 msgid "No external sites."
 msgstr "Keine externen Seiten."
+
+msgid "Try again"
+msgstr "Erneut versuchen"
+
+msgid "External sites"
+msgstr "Externe Seiten"
+
+msgid ""
+"A dashboard widget that shows the sites from the External sites app as app "
+"icons."
+msgstr ""
+"Ein Dashboard-Widget, das die Seiten der App „Externe Seiten“ als App-"
+"Symbole anzeigt."
+
+msgid "Leave empty to use the default title."
+msgstr "Leer lassen, um den Standardtitel zu verwenden."
+
+msgid "Content"
+msgstr "Inhalt"
+
+msgid ""
+"Show five icons per row instead of four when there are more than 6 links"
+msgstr ""
+"Fünf statt vier Symbole pro Zeile anzeigen, wenn mehr als 6 Links vorhanden "
+"sind"
+
+msgid "Icon style"
+msgstr "Symbolstil"
+
+msgid "Theme color"
+msgstr "Designfarbe"
+
+msgid "Tinted like the apps in the app menu"
+msgstr "Eingefärbt wie die Apps im App-Menü"
+
+msgid "Monochrome"
+msgstr "Einfarbig"
+
+msgid "Icons in the text color"
+msgstr "Symbole in der Textfarbe"
+
+msgid "Custom color"
+msgstr "Benutzerdefinierte Farbe"
+
+msgid "Tinted with a color of your choice"
+msgstr "Mit einer Farbe Ihrer Wahl eingefärbt"
+
+msgid "Original icons"
+msgstr "Originalsymbole"
+
+msgid "Keep the colors of multicolor logos"
+msgstr "Die Farben mehrfarbiger Logos bleiben erhalten"
+
+msgid "Choose icon color"
+msgstr "Symbolfarbe auswählen"
