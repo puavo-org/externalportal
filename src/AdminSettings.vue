@@ -26,6 +26,7 @@
 				</NcFormGroup>
 
 				<NcRadioGroup :modelValue="state.iconSize || 'medium'"
+					class="externalportal-settings__size"
 					:label="t('externalportal', 'Icon size')"
 					@update:modelValue="updateField('iconSize', $event)">
 					<NcRadioGroupButton value="small" :label="t('externalportal', 'Small')" />
@@ -230,6 +231,17 @@ export default {
 		gap: calc(var(--default-grid-baseline) * 6);
 		flex: 1 1 300px;
 		max-width: 600px;
+	}
+
+	// NcRadioGroupButton marks the selected button only with a background
+	// color, which forced colors mode removes. Use the system highlight instead.
+	&__size :deep(div:has(> input[type='radio']:checked)) {
+		@media (forced-colors: active) {
+			forced-color-adjust: none;
+			background-color: Highlight;
+			border-color: Highlight;
+			color: HighlightText;
+		}
 	}
 
 	&__color {
