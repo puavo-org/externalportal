@@ -30,11 +30,12 @@
 						<img v-if="iconMode === 'original'"
 							class="site-tile__image"
 							alt=""
-							:src="item.icon">
+							:src="item.icon"
+							:style="iconMaxStyle(item)">
 						<span v-else
 							class="site-tile__glyph"
 							aria-hidden="true"
-							:style="{ '--site-icon-url': `url('${item.icon}')` }" />
+							:style="{ '--site-icon-url': `url('${item.icon}')`, ...iconMaxStyle(item) }" />
 					</span>
 					<span class="site-tile__label">{{ item.name }}</span>
 				</a>
@@ -102,6 +103,9 @@ export default {
 			iconSize: 'medium',
 			iconColorMode: 'DEFAULT',
 			customIconColor: '',
+			// Natural widths of raster icons, by URL. Raster icons are drawn no
+			// larger than this, as External sites only allows 16-32px rasters.
+			rasterWidths: {} as Record<string, number>,
 		}
 	},
 
@@ -148,6 +152,32 @@ export default {
 				panel.classList.add('externalportal--extra-wide')
 			} else {
 				panel.classList.remove('externalportal--extra-wide')
+			}
+		},
+
+		isRaster(url: string) {
+			const path = url.split(/[?#]/)[0].toLowerCase()
+			return !path.endsWith('.svg')
+		},
+
+		iconMaxStyle(item: ExternalSite): Record<string, string> {
+			const width = this.rasterWidths[item.icon]
+			return width ? { '--site-icon-max': `${width}px` } : {}
+		},
+
+		measureRasterIcons() {
+			for (const item of this.content) {
+				const url = item.icon
+				if (!url || !this.isRaster(url) || url in this.rasterWidths) {
+					continue
+				}
+				const image = new Image()
+				image.onload = () => {
+					if (image.naturalWidth > 0) {
+						this.rasterWidths[url] = image.naturalWidth
+					}
+				}
+				image.src = url
 			}
 		},
 
@@ -202,6 +232,7 @@ export default {
 			}
 			this.loading = false
 			this.updateExtraWide()
+			this.measureRasterIcons()
 		},
 
 		async reload() {
@@ -346,8 +377,9 @@ $bevel:
 	}
 
 	&__glyph {
-		width: var(--site-glyph-size);
-		height: var(--site-glyph-size);
+		// Raster icons stop at their natural size; scaled up they only blur.
+		width: min(var(--site-glyph-size), var(--site-icon-max, var(--site-glyph-size)));
+		height: min(var(--site-glyph-size), var(--site-icon-max, var(--site-glyph-size)));
 		// Masked rather than shown: site icons ship a hardcoded fill, so the
 		// color has to come from the background.
 		background-color: var(--site-glyph-color);
@@ -365,8 +397,9 @@ $bevel:
 	}
 
 	&__image {
-		width: calc(var(--site-circle-size) * 5 / 6);
-		height: calc(var(--site-circle-size) * 5 / 6);
+		--site-image-size: calc(var(--site-circle-size) * 5 / 6);
+		width: min(var(--site-image-size), var(--site-icon-max, var(--site-image-size)));
+		height: min(var(--site-image-size), var(--site-icon-max, var(--site-image-size)));
 		object-fit: contain;
 		filter: var(--site-image-shadow);
 	}
