@@ -1,5 +1,20 @@
 # External Portal changelog
 
+## [3.0.0] - 2026-11-20
+### Changed
+- Redesigned the dashboard widget with the Nextcloud design system: sites are shown as round app icons like the app menu, with loading, error and empty states.
+- Redesigned the admin settings page with Nextcloud components and a live preview of the widget.
+- New icon styles: theme color, monochrome, custom color and original icons.
+- New icon size setting (small, medium or large). It replaces the "Limit icon size" option.
+- Raster icons (PNG, JPG, GIF) are drawn no larger than their natural size, so they no longer blur. SVG icons fill the icon circle.
+- The widget supports dark and high contrast themes.
+- New App Store screenshots.
+- Update Finnish and German translations.
+### Fixed
+- Original icons stay visible on dark themes.
+- The selected icon size is shown in forced colors mode.
+- Update follow-redirects to 1.16.3 and qs to 6.17.1 for security advisories.
+
 ## [2.3.0] - 2026-11-16
 ### Changed
 - Compatibility with Nextcloud 35.
