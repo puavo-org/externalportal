@@ -4,6 +4,8 @@ A Nextcloud Dashboard widget providing a view of the current user's external sit
 
 This app is not affiliated with the External sites app. Implementing the corresponding functionality in the External sites app would have also been a possibility - however, due to the very limited interoperability required, a separate app was chosen as a lighter solution.
 
+![The External portal widget on the Nextcloud dashboard](screenshots/dashboard.png)
+
 ## Requirements
 
 - Nextcloud 33 to 35

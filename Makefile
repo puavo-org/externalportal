@@ -31,7 +31,6 @@ package:
 		LICENSES \
 		README.md \
 		REUSE.toml \
-		screenshot.png \
 		$(sign_dir)/$(app_name)
 	tar czf $(build_dir)/$(app_name).tar.gz \
 		-C $(sign_dir) $(app_name)
