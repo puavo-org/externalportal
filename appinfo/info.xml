@@ -11,7 +11,10 @@
     <namespace>ExternalPortal</namespace>
     <category>dashboard</category>
     <bugs>https://github.com/puavo-org/externalportal/issues</bugs>
-    <screenshot>https://raw.githubusercontent.com/puavo-org/externalportal/main/screenshot.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/puavo-org/externalportal/main/screenshots/dashboard.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/puavo-org/externalportal/main/screenshots/dashboard-dark.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/puavo-org/externalportal/main/screenshots/icon-styles.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/puavo-org/externalportal/main/screenshots/admin-settings.png</screenshot>
     <dependencies>
         <nextcloud min-version="33" max-version="35"/>
     </dependencies>
